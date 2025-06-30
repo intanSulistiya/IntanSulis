@@ -30,7 +30,7 @@ export default function Footer() {
             style={{ backdropFilter: 'blur(4px)' }}
           >
             <span className="text-pink-500 text-xl">♥</span>
-            <span className="text-slate-700 font-semibold break-words text-sm sm:text-base">hope u like it my luv -eq</span>
+            <span className="text-slate-700 font-semibold break-words text-sm sm:text-base">hope u like it my luv -eq </span>
             <button
               className="ml-2 text-slate-400 hover:text-pink-500 text-lg font-bold focus:outline-none w-8 h-8 flex items-center justify-center"
               aria-label="Close dialog"

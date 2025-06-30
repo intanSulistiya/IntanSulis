@@ -109,11 +109,11 @@ export default function HeroSection() {
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white via-white/50 to-transparent"></div>
       
       {/* Simplified Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+      {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
         <div className="w-6 h-10 border-2 border-purple-300 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full mt-2"></div>
         </div>
-      </div>
+      </div> */}
       {/* Animated Gradient CSS & Typing Cursor */}
       <style jsx>{`
         .animated-gradient {
