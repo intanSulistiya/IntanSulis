@@ -82,12 +82,12 @@ export default function ContactSection() {
                 </div>
                 <h4 className="font-semibold text-slate-700 mb-2 text-sm md:text-base">WhatsApp</h4>
                 <a 
-                  href="https://wa.me/6281234567890" 
+                  href="https://wa.me/6281352556195" 
                   className="text-purple-600 hover:text-purple-800 transition-colors text-sm md:text-base"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  +62 812-3456-7890
+                  +62 813-5255-6195
                 </a>
               </div>
             </div>
