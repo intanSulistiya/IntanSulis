@@ -66,7 +66,7 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-12 sm:mb-16">
           <a
             href="#contact"
-            className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold shadow-lg hover:shadow-purple-500/25 transform hover:-translate-y-1 transition-all duration-300"
+            className="w-auto sm:w-auto group relative inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold shadow-lg hover:shadow-purple-500/25 transform hover:-translate-y-1 transition-all duration-300"
           >
             <span>Mari Berkolaborasi</span>
             <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
@@ -76,7 +76,7 @@ export default function HeroSection() {
           
           <a
             href="#portfolio"
-            className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/80 backdrop-blur-sm text-purple-700 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold border border-purple-200/50 hover:bg-white hover:shadow-md transform hover:-translate-y-1 transition-all duration-300"
+            className="w-auto sm:w-auto group inline-flex items-center justify-center gap-2 bg-white/80 backdrop-blur-sm text-purple-700 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold border border-purple-200/50 hover:bg-white hover:shadow-md transform hover:-translate-y-1 transition-all duration-300"
           >
             <span>Lihat Portfolio</span>
           </a>

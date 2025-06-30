@@ -56,10 +56,10 @@ export default function ContactSection() {
                 </div>
                 <h4 className="font-semibold text-slate-700 mb-2 text-sm md:text-base">Email</h4>
                 <a 
-                  href="mailto:intan.sulistiyaaja@gmail.com" 
+                  href="mailto:intansulistiyaja@gmail.com" 
                   className="text-purple-600 hover:text-purple-800 transition-colors text-sm md:text-base"
                 >
-                  intan.sulistia@email.com
+                  intansulistiyaja@gmail.com
                 </a>
               </div>
 
