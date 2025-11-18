@@ -1,8 +1,10 @@
+"use client";
 import React, { useState, useEffect } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -17,58 +19,110 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Load theme from localStorage on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === 'dark');
+      document.documentElement.classList.toggle('light', savedTheme === 'light');
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    } else {
+      // Default to dark mode
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    const theme = newTheme ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+    document.documentElement.classList.toggle('light', !newTheme);
+    document.documentElement.classList.toggle('dark', newTheme);
+  };
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       isScrolled 
-        ? 'bg-white/90 backdrop-blur-md shadow-lg border-b border-purple-100/20' 
-        : 'bg-white/70 backdrop-blur-sm'
+        ? 'bg-[#0a0a0a]/95 backdrop-blur-xl shadow-2xl border-b border-[#800000]/20' 
+        : 'bg-[#0a0a0a]/90 backdrop-blur-lg'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          {/* Logo/Nama dengan Gradient */}
-          <div className="flex items-center group">
-            <div className="relative">
-              <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
-                Intan Sulistiya
-              </h1>
-              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300"></div>
+          {/* Logo*/}
+          <a
+            href="#home"
+            onClick={(e) => handleNavClick(e, '#home')}
+            className="flex items-center gap-3 focus:outline-none hover:opacity-80 transition-all"
+          >
+            {/* Monogram iS */}
+            <div className="flex items-end leading-none">
+              <span className="text-white text-5xl font-extrabold">i</span>
+              <span className="text-[#800000] text-5xl font-extrabold -ml-1">S</span>
             </div>
-            <div className="ml-3 w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-pulse"></div>
-          </div>
+            {/* Nama */}
+            <div className="flex flex-col leading-tight">
+              <span className="text-white text-x font-semibold">Intan</span>
+              <span className="text-[#800000] text-x font-semibold -mt-1">Sulistiya</span>
+            </div>
+          </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <a
-              href="#home"
-              className="relative group text-slate-700 hover:text-purple-600 font-medium transition-colors duration-300"
-            >
-              <span>Beranda</span>
-              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300"></div>
-            </a>
+          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
             <a
               href="#about"
-              className="relative group text-slate-700 hover:text-purple-600 font-medium transition-colors duration-300"
+              onClick={(e) => handleNavClick(e, '#about')}
+              className="text-white/80 hover:text-[#800000] font-medium transition-colors duration-300"
             >
-              <span>Tentang</span>
-              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300"></div>
+              About Me
             </a>
             <a
               href="#portfolio"
-              className="relative group text-slate-700 hover:text-purple-600 font-medium transition-colors duration-300"
+              onClick={(e) => handleNavClick(e, '#portfolio')}
+              className="text-white/80 hover:text-[#800000] font-medium transition-colors duration-300"
             >
-              <span>Portfolio</span>
-              <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300"></div>
+              Portfolio
             </a>
-            {/* CTA Button */}
             <a
               href="#contact"
-              className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg hover:shadow-purple-500/25 transform hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="text-white/80 hover:text-[#800000] font-medium transition-colors duration-300"
             >
-              <span className="relative z-10">Kontak</span>
-              <svg className="w-4 h-4 relative z-10 group-hover:translate-x-0.5 transition-transform" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-              </svg>
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              Contact Us
+            </a>
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-[#1a1a1a] border border-[#800000]/30 hover:border-[#800000]/50 text-white hover:text-[#800000] transition-all duration-300 transform hover:scale-110"
+              aria-label="Toggle theme"
+            >
+              {isDarkMode ? (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
+            </button>
+            {/* Hire Me Button */}
+            <a
+              href="#contact"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="bg-[#800000] hover:bg-[#A52A2A] text-white px-6 py-2.5 rounded-md font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#800000]/50"
+            >
+              Hire Me!
             </a>
           </nav>
 
@@ -76,7 +130,7 @@ export default function Header() {
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="relative group p-2 text-slate-700 hover:text-purple-600 focus:outline-none transition-colors duration-300"
+              className="relative group p-2 text-white hover:text-[#800000] focus:outline-none transition-colors duration-300"
             >
               <div className="w-6 h-6 relative">
                 <span className={`absolute left-0 top-1 w-6 h-0.5 bg-current transition-all duration-300 ${
@@ -97,34 +151,78 @@ export default function Header() {
         <div className={`md:hidden transition-all duration-300 ease-in-out ${
           isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         } overflow-hidden`}>
-          <div className="px-2 pt-2 pb-4 space-y-1 bg-white/95 backdrop-blur-md rounded-xl mx-2 mb-4 border border-purple-100/20 shadow-lg">
-            <a
-              href="#home"
-              className="block px-4 py-3 text-slate-700 hover:text-purple-600 hover:bg-purple-50/50 font-medium transition-all duration-300 rounded-lg"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Beranda
-            </a>
+          <div className="px-2 pt-2 pb-4 space-y-1 bg-[#1a1a1a]/95 backdrop-blur-md rounded-xl mx-2 mb-4 border border-[#800000]/20 shadow-lg">
             <a
               href="#about"
-              className="block px-4 py-3 text-slate-700 hover:text-purple-600 hover:bg-purple-50/50 font-medium transition-all duration-300 rounded-lg"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => { handleNavClick(e, '#about'); }}
+              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
             >
-              Tentang
+              About Me
+            </a>
+            <a
+              href="#services"
+              onClick={(e) => { handleNavClick(e, '#services'); }}
+              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
+            >
+              Services
             </a>
             <a
               href="#portfolio"
-              className="block px-4 py-3 text-slate-700 hover:text-purple-600 hover:bg-purple-50/50 font-medium transition-all duration-300 rounded-lg"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => { handleNavClick(e, '#portfolio'); }}
+              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
             >
               Portfolio
             </a>
             <a
-              href="#contact"
-              className="block mx-2 mt-3 px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg text-center transition-all duration-300 hover:shadow-lg"
-              onClick={() => setIsMenuOpen(false)}
+              href="#testimonials"
+              onClick={(e) => { handleNavClick(e, '#testimonials'); }}
+              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
             >
-              Kontak Saya
+              Testimonials
+            </a>
+            <a
+              href="#blog"
+              onClick={(e) => { handleNavClick(e, '#blog'); }}
+              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
+            >
+              Blog
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => { handleNavClick(e, '#contact'); }}
+              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
+            >
+              Contact Us
+            </a>
+            <button
+              onClick={toggleTheme}
+              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg w-full text-left"
+              aria-label="Toggle theme"
+            >
+              <div className="flex items-center gap-3">
+                {isDarkMode ? (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span>Light Mode</span>
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                    <span>Dark Mode</span>
+                  </>
+                )}
+              </div>
+            </button>
+            <a
+              href="#contact"
+              onClick={(e) => { handleNavClick(e, '#contact'); }}
+              className="block mx-2 mt-3 px-4 py-3 bg-[#800000] hover:bg-[#A52A2A] text-white font-bold rounded-lg text-center transition-all duration-300 hover:shadow-xl hover:scale-105"
+            >
+              Hire Me!
             </a>
           </div>
         </div>

@@ -8,16 +8,16 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
+    <div className="bg-[#0a0a0a] min-h-screen">
       <Header />
-      <main className="flex flex-col min-h-screen items-center justify-center bg-white pt-16">
+      <main className="flex flex-col items-center justify-center pt-16">
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
         <ContactSection />
         <Footer />
       </main>
-    </>
+    </div>
   );
 }
 

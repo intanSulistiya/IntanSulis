@@ -1,88 +1,124 @@
 export interface Project {
-  id: number;
+  id: number; // ID di-generate otomatis
   title: string;
   description: string;
   image: string;
+  images?: string[]; // Array of images for detail slide
   technologies: string[];
   link?: string;
   category: string;
+  status: "online" | "offline";
+  url?: string;
+  detailDescription?: string; // Additional description for detail page
 }
 
-export const projects: Project[] = [
+// Data proyek tanpa ID (akan di-generate otomatis)
+const projectsData: Omit<Project, 'id'>[] = [
   {
-    id: 1,
     title: "Website Portfolio Personal",
     description: "Website portfolio personal dengan desain modern dan responsive. Menggunakan Next.js dan Tailwind CSS untuk tampilan yang elegan dan user-friendly.",
     image: "/api/placeholder/400/250",
+    images: ["/api/placeholder/800/500", "/api/placeholder/800/500", "/api/placeholder/800/500"],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     link: "#",
-    category: "Portfolio"
+    category: "Portfolio",
+    status: "online",
+    url: "#",
+    detailDescription: "Website portfolio personal yang dibangun dengan teknologi modern Next.js dan TypeScript. Desain yang clean dan minimalis dengan fokus pada user experience. Fitur-fitur utama termasuk animasi smooth, responsive design untuk semua device, dan optimasi SEO."
   },
   {
-    id: 2,
     title: "Menu Online GK Cafe",
-    description: "Aplikasi menu online untuk cafe dengan fitur pemesanan digital, manajemen menu. Interface yang user-friendly untuk pelanggan dan admin.",
+    description: "Website menu online cafe di Jeneponto dengan tampilan yang responsive dan mudah digunakan. Menampilkan menu lengkap dengan kategori makanan dan minuman.",
     image: "/api/placeholder/400/250",
-    technologies: ["Laravel", "Blade", "MySQL", "Bootstrap"],
+    images: [
+      "/image/projects/gk-cafe-1.jpg",
+      "/image/projects/gk-cafe-2.jpg",
+      "/image/projects/gk-cafe-3.jpg"
+    ],
+    technologies: ["Laravel", "Filament", "MySQL"],
     link: "#",
-    category: "Business"
+    category: "Business",
+    status: "offline",
+    detailDescription: "Website menu online cafe yang dikembangkan untuk cafe di Jeneponto. Sistem ini menampilkan menu lengkap dengan kategori makanan dan minuman yang terorganisir dengan baik. Desain yang responsive memastikan pengalaman pengguna yang optimal di semua perangkat. Dibangun dengan Laravel dan Filament untuk manajemen konten yang mudah."
   },
   {
-    id: 3,
-    title: "Aplikasi Sayang Rakyat",
-    description: "Sistem prediksi suara pemilu berbasis input data pemilih untuk analisis kampanye politik. Fitur dashboard analitik dan laporan real-time.",
+    title: "Sayang Rakyat App",
+    description: "Sistem prediksi suara pada PEMILU berdasarkan inputan data pemilih. Aplikasi berbasis web untuk analisis dan prediksi hasil pemilihan umum.",
     image: "/api/placeholder/400/250",
-    technologies: ["Laravel", "Blade", "Filament", "MySQL"],
+    technologies: ["Laravel", "Filament", "MySQL"],
     link: "#",
-    category: "Business"
+    category: "Business",
+    status: "offline",
+    detailDescription: "Aplikasi sistem prediksi suara pemilu yang dikembangkan untuk membantu analisis hasil pemilihan umum. Sistem ini memungkinkan input data pemilih dan menghasilkan prediksi suara berdasarkan data yang dimasukkan. Dibangun dengan Laravel dan Filament untuk interface admin yang powerful dan mudah digunakan."
   },
   {
-    id: 4,
-    title: "Aplikasi Tiket Youtive Inspire Educamp",
-    description: "Aplikasi pemesanan tiket berbasis web untuk acara edukasi dan seminar dengan sistem pembuatan dan verifikasi tiket digital.",
+    title: "Youtive Inspire Educamp Ticketing",
+    description: "Aplikasi pemesanan tiket untuk acara pendidikan dan seminar berbasis web. Menyediakan fitur pembuatan dan verifikasi tiket digital.",
     image: "/api/placeholder/400/250",
-    technologies: ["Laravel", "Blade", "Filament", "MySQL"],
+    technologies: ["Laravel", "MySQL"],
     link: "#",
-    category: "Business"
+    category: "Business",
+    status: "offline",
+    detailDescription: "Sistem pemesanan tiket online yang dikembangkan khusus untuk acara pendidikan dan seminar. Aplikasi ini menyediakan fitur lengkap untuk pembuatan tiket, verifikasi tiket, dan manajemen peserta. Interface yang user-friendly memudahkan pengguna untuk memesan tiket dengan cepat dan mudah."
   },
   {
-    id: 5,
-    title: "Sistem Pakar Deteksi Depresi",
-    description: "Aplikasi sistem pakar untuk deteksi dini gejala depresi menggunakan metode forward chaining dan certainty factor. Fitur kuesioner interaktif dan analisis gejala dengan rekomendasi tindakan.",
+    title: "DepresiCheck",
+    description: "Sistem pendukung keputusan diagnosis depresi menggunakan metode Certainty Factor dan Forward Chaining. Membantu tenaga medis mengevaluasi gejala pasien dengan tingkat kepercayaan yang akurat.",
     image: "/api/placeholder/400/250",
-    technologies: ["Laravel", "Blade", "MySQL", "Bootstrap", "JavaScript"],
+    technologies: ["Laravel", "JavaScript", "MySQL"],
     link: "#",
-    category: "Education"
+    category: "Education",
+    status: "offline",
+    detailDescription: "Sistem pendukung keputusan yang dibangun untuk membantu tenaga medis dalam diagnosis depresi. Menggunakan metode Certainty Factor dan Forward Chaining untuk menghasilkan evaluasi gejala dengan tingkat kepercayaan yang akurat. Interface responsif dengan form input gejala, dashboard visualisasi hasil, dan integrasi API JavaScript untuk menampilkan diagnosis secara interaktif dengan grafik dan color-coding."
   },
   {
-    id: 6,
-    title: "Aplikasi Voting E-Musrenbang Kabupaten Gowa",
-    description: "Sistem voting berbasis web untuk perencanaan pembangunan Kabupaten Gowa dengan sistem notifikasi feedback pengguna dan dashboard admin.",
+    title: "Event Organizer Locomotive Ticketing",
+    description: "Sistem pemesanan tiket online untuk event organizer dengan antarmuka pengguna yang responsif dan user-friendly. Menyediakan fitur pembuatan dan verifikasi tiket.",
     image: "/api/placeholder/400/250",
-    technologies: ["Laravel", "MySQL", "JavaScript", "Docker", "Tailwind CSS"],
+    technologies: ["Laravel", "MySQL"],
     link: "#",
-    category: "Business"
+    category: "Business",
+    status: "offline",
+    detailDescription: "Sistem pemesanan tiket online yang dikembangkan untuk event organizer. Aplikasi ini memiliki antarmuka pengguna yang responsif dan user-friendly, memudahkan pengguna untuk memesan tiket dengan cepat. Fitur utama termasuk pembuatan tiket, verifikasi tiket, dan manajemen event yang terintegrasi."
   },
   {
-    id: 7,
-    title: "Sistem Tiket Event Organizer Locomotive",
-    description: "Sistem pemesanan tiket online untuk event organizer dengan fitur pembuatan tiket dan verifikasi. Interface admin yang mudah digunakan.",
+    title: "Jastip App Papua – Makassar",
+    description: "Aplikasi jasa titip dengan fitur tracking visual pengiriman dan interface pembayaran yang responsif. Terintegrasi dengan API untuk real-time status update.",
     image: "/api/placeholder/400/250",
-    technologies: ["Laravel", "Blade", "Filament", "MySQL"],
+    technologies: ["Laravel", "Filament", "MySQL"],
     link: "#",
-    category: "Business"
+    category: "Business",
+    status: "offline",
+    detailDescription: "Aplikasi jasa titip yang dirancang untuk memfasilitasi pengiriman barang antara Papua dan Makassar. Sistem ini memiliki fitur tracking visual pengiriman yang memungkinkan pengguna memantau status pengiriman secara real-time. Interface pembayaran yang responsif dan terintegrasi dengan API untuk update status secara real-time memberikan pengalaman pengguna yang optimal."
   },
   {
-    id: 8,
-    title: "Marajamedia",
-    description: "Portal berita website yang menampilkan liputan berita lokal dan nasional dengan sistem registrasi pengguna, sistem manajemen konten, dan kategorisasi berita regional.",
+    title: "Jendig BPDAS",
+    description: "Sistem persuratan digital berbasis web untuk BPDAS dengan Content Management System (CMS) terintegrasi. Mendigitalisasi proses administrasi surat-menyurat.",
     image: "/api/placeholder/400/250",
-    technologies: ["Laravel", "MySQL", "Tailwind CSS", "Filament"],
-    link: "https://marajamedia.com/",
-    category: "CMS"
+    technologies: ["Laravel", "JavaScript", "MySQL", "Bootstrap 5"],
+    link: "#",
+    category: "CMS",
+    status: "offline",
+    detailDescription: "Sistem persuratan digital yang dikembangkan untuk BPDAS (Balai Pengelolaan Daerah Aliran Sungai) dengan Content Management System (CMS) terintegrasi. Sistem ini bertujuan untuk mendigitalisasi dan mempermudah proses administrasi surat-menyurat. Fitur utama termasuk sistem 2 level akses (adminPI, super admin), navbar responsif dengan struktur menu intuitif, sidebar navigasi dengan menu hierarki, dan validasi form yang optimal untuk user experience yang baik."
+  },
+  {
+    title: "Stone House QR Menu",
+    description: "Sistem informasi layanan berbasis Progressive Web Application (PWA) terintegrasi dengan QR Code dan algoritma Prophet untuk Kafe Stone House di Makassar.",
+    image: "/api/placeholder/400/250",
+    technologies: ["PHP Native", "JavaScript", "MySQL", "Bootstrap 5"],
+    link: "#",
+    category: "Business",
+    status: "offline",
+    detailDescription: "Sistem informasi layanan berbasis Progressive Web Application (PWA) yang terintegrasi dengan QR Code dan algoritma Prophet untuk Kafe Stone House di Makassar. Sistem ini mengatasi permasalahan waktu tunggu pemesanan yang lama dengan menyediakan platform pemesanan digital langsung dari meja pelanggan. Fitur utama termasuk antarmuka pemesanan dengan QR Code scanner, form pemesanan interaktif, tampilan menu digital responsif, dashboard multi-role untuk Owner dan Karyawan, manajemen menu & stok, laporan penjualan, visualisasi data prediksi menggunakan Chart.js, dan optimasi PWA dengan fitur offline-ready dan real-time update menggunakan AJAX."
   },
 
 ];
+
+// Generate ID otomatis berdasarkan index array
+export const projects: Project[] = projectsData.map((project, index) => ({
+  ...project,
+  id: index + 1
+}));
 
 export const categories = [
   "All",
