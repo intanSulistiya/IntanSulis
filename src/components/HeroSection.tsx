@@ -57,7 +57,7 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row  gap-4 mt-0.5">
               <a
                 // 1. Arahkan ke file CV Anda (pastikan file ada di folder 'public')
-                href="/../public/pdf/CV-intan-sulistiya.pdf" 
+                href="/pdf/CV-Intan-sulistiya.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center justify-center gap-2 bg-[#800000] hover:bg-[#A52A2A] text-white px-8 py-2 rounded-lg font-bold text-base transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl hover:shadow-[#800000]/50 overflow-hidden"
