@@ -1,9 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import RotatingText from './RotatingText'
+
 
 export default function HeroSection() {
   const [typedText, setTypedText] = useState("");
+
 
   useEffect(() => {
     const fullText = "Web Developer yang percaya: detail kecil bisa membuat website jadi luar biasa.";
@@ -28,15 +31,31 @@ export default function HeroSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 items-center min-h-screen py-">
           {/* Left Content Area */}
-          <div className="flex flex-col justify-center space-y-8 lg:space-y-10">
+          <div className="flex flex-col justify-center space-y-5 lg:space-y-5">
             {/* Hello Badge with Animation */}
             <div className="inline-flex items-center gap-2 bg-[#800000]/10 backdrop-blur-sm border border-[#800000]/30 rounded-full px-10 py-3 w-fit shadow-lg hover:shadow-[#800000]/20 transition-all duration-300 hover:scale-105">
               <div className="w-2 h-2 bg-[#800000] rounded-full animate-pulse"></div>
-              <span className="text-[#800000] font-semibold text-sm tracking-wide">Hello World!</span>
+              <span className="font-semibold text-sm tracking-wide inline-flex items-baseline">
+                Hello {' '}
+                <RotatingText
+                  {...({
+                    texts: [' World!', ' Guys', ' How are you?', ' I am Intan'],
+                    staggerFrom: "last",
+                    initial: { y: "100%" },
+                    animate: { y: 0 },
+                    exit: { y: "-120%" },
+                    staggerDuration: 0.025,
+                    splitLevelClassName: "overflow-hidden pb-0.5 sm:pb-1 md:pb-1",
+                    mainClassName: "inline-flex items-baseline",
+                    elementLevelClassName: "inline-block align-baseline",
+                    transition: { type: "spring", damping: 30, stiffness: 400 },
+                    rotationInterval: 2000
+                  } as any)}
+                />
+              </span>
             </div>
-
             {/* Main Heading with Gradient Effect */}
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
               <span className="block">Intan</span>

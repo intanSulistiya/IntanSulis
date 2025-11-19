@@ -1,9 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import ScrollFloat from './ScrollFloat';
+
 
 export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const scrollContainerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -30,21 +33,23 @@ export default function ContactSection() {
     <section 
       ref={sectionRef}
       id="contact" 
-      className="w-full py-10 px-4 bg-[#0a0a0a] relative overflow-hidden"
+      className="w-full py-1 px-2 bg-[#0a0a0a] relative overflow-hidden"
     >
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#800000]/20 border border-[#800000]/30 rounded-full px-4 py-2 mb-4">
-            <div className="w-2 h-2 bg-[#800000] rounded-full"></div>
-            <span className="text-sm font-medium text-[#800000]">
-              Contact Us
-            </span>
-          </div>
-          
+        <div className="text-center mb-12 lg:mb-2">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
+          <ScrollFloat
+            scrollContainerRef={scrollContainerRef}
+            animationDuration={1}
+            ease='back.inOut(2)'
+            scrollStart='center bottom+=50%'
+            scrollEnd='bottom bottom-=40%'
+            stagger={0.03}
+          >
             Hubungi Saya
+          </ScrollFloat>
           </h2>
           
           <p className="text-base md:text-lg text-white/70 max-w-3xl mx-auto mb-6 leading-relaxed">

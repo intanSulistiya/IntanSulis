@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { projects, categories, Project } from "./const";
+import ScrollFloat from './ScrollFloat';
 
 export default function ProjectsSection() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -10,6 +11,7 @@ export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const scrollContainerRef = useRef<HTMLElement>(null);
 
   const filteredProjects = selectedCategory === "All" 
     ? projects 
@@ -99,13 +101,20 @@ export default function ProjectsSection() {
       
       <div className="max-w-9.5xl ml-0 md:ml-8 lg:ml-16 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-4">
-          <div className="inline-flex items-center gap-1 bg-[#800000]/20 border border-[#800000]/30 rounded-full px-4 py-2 mb-3">
-            <div className="w-2 h-2 bg-[#800000] rounded-full"></div>
-            <span className="text-sm font-medium text-[#800000]">
-              Portfolio
+        <div className="text-center mb-12 lg:mb-2">
+            <span className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
+            <ScrollFloat
+            scrollContainerRef={scrollContainerRef}
+            animationDuration={1}
+            ease='back.inOut(2)'
+            scrollStart='center bottom+=50%'
+            scrollEnd='bottom bottom-=40%'
+            stagger={0.03}
+          >
+            Portfolio
+          </ScrollFloat>
             </span>
-          </div>
+
           
           <p className="text-lg text-left text-white/80 max-w-3xl mb-4 leading-relaxed">
             Beberapa karya saya dalam pengembangan aplikasi web menggunakan <span className="font-bold text-[#800000]">Laravel</span> dan teknologi modern lainnya

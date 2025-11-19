@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import ScrollFloat from "./ScrollFloat";
 
 export default function AboutSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [showFunFacts, setShowFunFacts] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-
+  const scrollContainerRef = useRef<HTMLElement>(null);
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
@@ -27,11 +28,19 @@ export default function AboutSection() {
     >
       <div className="max-w-9.5xl ml-0 md:ml-8 lg:ml-16 relative z-10">
         {/* Header */}
-        <div className="text-center mb-4">
-          <div className="inline-flex items-center gap-1 bg-[#800000]/20 border border-[#800000]/30 rounded-full px-4 py-2 mb-3">
-            <div className="w-2 h-2 bg-[#800000] rounded-full"></div>
-            <span className="text-sm font-medium text-[#800000]">About Me</span>
-          </div>
+        <div className="text-left mb-4">
+        <span className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
+            <ScrollFloat
+            scrollContainerRef={scrollContainerRef}
+            animationDuration={1}
+            ease='back.inOut(2)'
+            scrollStart='center bottom+=50%'
+            scrollEnd='bottom bottom-=40%'
+            stagger={0.03}
+          >
+            About Me
+          </ScrollFloat>
+            </span>
           </div>
 
         {/* Layout 2 Kolom */}
