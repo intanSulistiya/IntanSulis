@@ -43,7 +43,7 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 lg:mb-2">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
+          <span className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
           <ScrollFloat
             scrollContainerRef={scrollContainerRef}
             animationDuration={1}
@@ -54,7 +54,7 @@ export default function ContactSection() {
           >
             {t.contact.title}
           </ScrollFloat>
-          </h2>
+          </span>
           
           <p className="text-base md:text-lg text-white/70 max-w-3xl mx-auto mb-6 leading-relaxed">
             {t.contact.subtitle}
