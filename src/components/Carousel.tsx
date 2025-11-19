@@ -148,14 +148,6 @@ export default function Carousel({
         }
       };
 
-  // Create all transforms at the top level to avoid calling hooks inside callbacks
-  const transforms: MotionValue<number>[] = [];
-  for (let index = 0; index < carouselItems.length; index++) {
-    const range = [-(index + 1) * trackItemOffset, -index * trackItemOffset, -(index - 1) * trackItemOffset];
-    const outputRange = [90, 0, -90];
-    transforms.push(useTransform(x, range, outputRange, { clamp: false }));
-  }
-
   return (
     <div
       ref={containerRef}
@@ -174,8 +166,6 @@ export default function Carousel({
         style={{
           width: itemWidth,
           gap: `${GAP}px`,
-          perspective: 1000,
-          perspectiveOrigin: `${currentIndex * trackItemOffset + itemWidth / 2}px 50%`,
           x
         }}
         onDragEnd={handleDragEnd}
@@ -183,9 +173,7 @@ export default function Carousel({
         transition={effectiveTransition}
         onAnimationComplete={handleAnimationComplete}
       >
-        {carouselItems.map((item, index) => {
-          const rotateY = transforms[index];
-          return (
+        {carouselItems.map((item, index) => (
             <motion.div
               key={index}
               className={`relative shrink-0 flex flex-col ${
@@ -196,7 +184,6 @@ export default function Carousel({
               style={{
                 width: itemWidth,
                 height: round ? itemWidth : '100%',
-                rotateY: rotateY,
                 ...(round && { borderRadius: '50%' })
               }}
               transition={effectiveTransition}
@@ -211,8 +198,7 @@ export default function Carousel({
                 <p className="text-sm text-white">{item.description}</p>
               </div>
             </motion.div>
-          );
-        })}
+        ))}
       </motion.div>
       <div className={`flex w-full justify-center ${round ? 'absolute z-20 bottom-12 left-1/2 -translate-x-1/2' : ''}`}>
         <div className="mt-4 flex w-[150px] justify-between px-8">
