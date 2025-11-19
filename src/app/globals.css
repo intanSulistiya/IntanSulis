@@ -6,18 +6,6 @@
   --maroon: #800000;
 }
 
-.light {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --maroon: #800000;
-}
-
-.dark {
-  --background: #0a0a0a;
-  --foreground: #ffffff;
-  --maroon: #800000;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -43,30 +31,24 @@ html {
   width: 10px;
 }
 
-.dark ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: #1a1a1a;
+  border-radius: 5px;
 }
 
-.light ::-webkit-scrollbar-track {
-  background: #f5f5f5;
-}
-
-.dark ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #800000, #A52A2A);
   border-radius: 5px;
 }
 
-.light ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #800000, #A52A2A);
-  border-radius: 5px;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #A52A2A, #800000);
 }
 
-.light ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #A52A2A, #800000);
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #800000 #1a1a1a;
 }
 
 /* Selection Color */

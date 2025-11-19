@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full text-center py-5 px-2 sm:px-6 text-sm sm:text-base bg-[#0a0a0a] border-t border-[#800000]/20 mt-16 relative">
-      <span className="inline-flex flex-wrap items-center gap-1 justify-center font-medium text-white/80">
+      <span className="inline-flex flex-wrap items-center gap-1 justify-center font-medium text-white">
         Made with
         <button
           className="text-[#800000] font-bold hover:animate-pulse focus:outline-none transition-all duration-300"

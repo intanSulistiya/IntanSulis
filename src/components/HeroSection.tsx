@@ -47,7 +47,7 @@ export default function HeroSection() {
 
             {/* Subtitle with Typing Effect */}
             <div className="min-h-[80px] flex items-center">
-              <p className="text-xl sm:text-xl md:text-xl text-white/90 leading-relaxed font-medium">
+              <p className="text-xl sm:text-xl md:text-xl text-white leading-relaxed font-medium">
                 {typedText}
                 <span className="inline-block w-1 h-5 align-middle bg-[#800000] ml-2 animate-blink rounded-sm"></span>
               </p>

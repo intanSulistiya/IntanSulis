@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -18,29 +17,6 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Load theme from localStorage on mount
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === 'dark');
-      document.documentElement.classList.toggle('light', savedTheme === 'light');
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-    } else {
-      // Default to dark mode
-      document.documentElement.classList.add('dark');
-      document.documentElement.classList.remove('light');
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = !isDarkMode;
-    setIsDarkMode(newTheme);
-    const theme = newTheme ? 'dark' : 'light';
-    localStorage.setItem('theme', theme);
-    document.documentElement.classList.toggle('light', !newTheme);
-    document.documentElement.classList.toggle('dark', newTheme);
-  };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -100,22 +76,6 @@ export default function Header() {
             >
               Contact Us
             </a>
-            {/* Theme Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-[#1a1a1a] border border-[#800000]/30 hover:border-[#800000]/50 text-white hover:text-[#800000] transition-all duration-300 transform hover:scale-110"
-              aria-label="Toggle theme"
-            >
-              {isDarkMode ? (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              ) : (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-              )}
-            </button>
             {/* Hire Me Button */}
             <a
               href="#contact"
@@ -174,49 +134,12 @@ export default function Header() {
               Portfolio
             </a>
             <a
-              href="#testimonials"
-              onClick={(e) => { handleNavClick(e, '#testimonials'); }}
-              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
-            >
-              Testimonials
-            </a>
-            <a
-              href="#blog"
-              onClick={(e) => { handleNavClick(e, '#blog'); }}
-              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
-            >
-              Blog
-            </a>
-            <a
               href="#contact"
               onClick={(e) => { handleNavClick(e, '#contact'); }}
               className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
             >
               Contact Us
             </a>
-            <button
-              onClick={toggleTheme}
-              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg w-full text-left"
-              aria-label="Toggle theme"
-            >
-              <div className="flex items-center gap-3">
-                {isDarkMode ? (
-                  <>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                    <span>Light Mode</span>
-                  </>
-                ) : (
-                  <>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                    </svg>
-                    <span>Dark Mode</span>
-                  </>
-                )}
-              </div>
-            </button>
             <a
               href="#contact"
               onClick={(e) => { handleNavClick(e, '#contact'); }}

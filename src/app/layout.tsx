@@ -96,7 +96,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         {/* <link rel="manifest" href="/site.webmanifest" /> */}
-        <meta name="theme-color" content="#8b5cf6" />
+        <meta name="theme-color" content="#0a0a0a" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         
         {/* Preconnect untuk performa */}
@@ -107,7 +107,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
       </head>
-      <body className="antialiased bg-white text-slate-900 selection:bg-purple-200 selection:text-purple-900">
+      <body className="antialiased bg-[#0a0a0a] text-white selection:bg-[#800000]/30 selection:text-white">
         {children}
       </body>
     </html>

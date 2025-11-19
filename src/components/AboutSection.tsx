@@ -131,7 +131,7 @@ export default function AboutSection() {
           {/* Fun Facts Text Button */}
           <button
             onClick={() => setShowFunFacts(!showFunFacts)}
-            className="inline-flex items-center gap-2 text-lg text-white/80 hover:text-[#800000] 
+            className="inline-flex items-center gap-2 text-lg text-white hover:text-[#800000] 
               transition-colors duration-300 group"
           >
             <span className="font-semibold">Fun Facts</span>
