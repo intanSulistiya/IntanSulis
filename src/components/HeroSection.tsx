@@ -44,19 +44,17 @@ export default function HeroSection() {
               <span className="font-semibold text-sm tracking-wide inline-flex items-baseline">
                 {t.hero.hello}{' '}
                 <RotatingText
-                  {...({
-                    texts: t.hero.rotatingTexts,
-                    staggerFrom: "last",
-                    initial: { y: "100%" },
-                    animate: { y: 0 },
-                    exit: { y: "-120%" },
-                    staggerDuration: 0.025,
-                    splitLevelClassName: "overflow-hidden pb-0.5 sm:pb-1 md:pb-1",
-                    mainClassName: "inline-flex items-baseline",
-                    elementLevelClassName: "inline-block align-baseline",
-                    transition: { type: "spring", damping: 30, stiffness: 400 },
-                    rotationInterval: 2000
-                  } as any)}
+                  texts={t.hero.rotatingTexts}
+                  staggerFrom="last"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                  mainClassName="inline-flex items-baseline"
+                  elementLevelClassName="inline-block align-baseline"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={2000}
                 />
               </span>
             </div>

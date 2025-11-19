@@ -35,7 +35,7 @@ export default function AboutSection() {
         <div className="text-left mb-4">
         <span className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
             <ScrollFloat
-            scrollContainerRef={scrollContainerRef}
+            scrollContainerRef={scrollContainerRef as React.RefObject<HTMLElement | null>}
             animationDuration={1}
             ease='back.inOut(2)'
             scrollStart='center bottom+=50%'
