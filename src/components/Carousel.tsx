@@ -148,6 +148,13 @@ export default function Carousel({
         }
       };
 
+  // Create all transforms before the map to avoid calling hooks inside callbacks
+  const transforms = carouselItems.map((_, index) => {
+    const range = [-(index + 1) * trackItemOffset, -index * trackItemOffset, -(index - 1) * trackItemOffset];
+    const outputRange = [90, 0, -90];
+    return useTransform(x, range, outputRange, { clamp: false });
+  });
+
   return (
     <div
       ref={containerRef}
@@ -176,9 +183,7 @@ export default function Carousel({
         onAnimationComplete={handleAnimationComplete}
       >
         {carouselItems.map((item, index) => {
-          const range = [-(index + 1) * trackItemOffset, -index * trackItemOffset, -(index - 1) * trackItemOffset];
-          const outputRange = [90, 0, -90];
-          const rotateY = useTransform(x, range, outputRange, { clamp: false });
+          const rotateY = transforms[index];
           return (
             <motion.div
               key={index}
