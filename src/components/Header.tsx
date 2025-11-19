@@ -1,7 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/locales/translations";
 
 export default function Header() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -60,29 +65,31 @@ export default function Header() {
               onClick={(e) => handleNavClick(e, '#about')}
               className="text-white/80 hover:text-[#800000] font-medium transition-colors duration-300"
             >
-              About Me
+              {t.nav.about}
             </a>
             <a
               href="#portfolio"
               onClick={(e) => handleNavClick(e, '#portfolio')}
               className="text-white/80 hover:text-[#800000] font-medium transition-colors duration-300"
             >
-              Portfolio
+              {t.nav.portfolio}
             </a>
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
               className="text-white/80 hover:text-[#800000] font-medium transition-colors duration-300"
             >
-              Contact Us
+              {t.nav.contact}
             </a>
+            {/* Language Switcher */}
+            <LanguageSwitcher />
             {/* Hire Me Button */}
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
               className="bg-[#800000] hover:bg-[#A52A2A] text-white px-6 py-2.5 rounded-md font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#800000]/50"
             >
-              Hire Me!
+              {t.nav.hireMe}
             </a>
           </nav>
 
@@ -117,35 +124,31 @@ export default function Header() {
               onClick={(e) => { handleNavClick(e, '#about'); }}
               className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
             >
-              About Me
-            </a>
-            <a
-              href="#services"
-              onClick={(e) => { handleNavClick(e, '#services'); }}
-              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
-            >
-              Services
+              {t.nav.about}
             </a>
             <a
               href="#portfolio"
               onClick={(e) => { handleNavClick(e, '#portfolio'); }}
               className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
             >
-              Portfolio
+              {t.nav.portfolio}
             </a>
             <a
               href="#contact"
               onClick={(e) => { handleNavClick(e, '#contact'); }}
               className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
             >
-              Contact Us
+              {t.nav.contact}
             </a>
+            <div className="px-4 py-2">
+              <LanguageSwitcher />
+            </div>
             <a
               href="#contact"
               onClick={(e) => { handleNavClick(e, '#contact'); }}
               className="block mx-2 mt-3 px-4 py-3 bg-[#800000] hover:bg-[#A52A2A] text-white font-bold rounded-lg text-center transition-all duration-300 hover:shadow-xl hover:scale-105"
             >
-              Hire Me!
+              {t.nav.hireMe}
             </a>
           </div>
         </div>

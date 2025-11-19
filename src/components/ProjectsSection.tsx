@@ -3,8 +3,12 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { projects, categories, Project } from "./const";
 import ScrollFloat from './ScrollFloat';
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/locales/translations";
 
 export default function ProjectsSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [showAll, setShowAll] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -91,7 +95,7 @@ export default function ProjectsSection() {
     <section 
       ref={sectionRef}
       id="portfolio" 
-      className="w-full py-10 px3 bg-[#0a0a0a] relative overflow-hidden"
+      className="w-full py-10 px3 bg-[#0a0a0a] relative overflow-hidden "
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -111,13 +115,13 @@ export default function ProjectsSection() {
             scrollEnd='bottom bottom-=40%'
             stagger={0.03}
           >
-            Portfolio
+            {t.projects.title}
           </ScrollFloat>
             </span>
 
           
           <p className="text-lg text-left text-white/80 max-w-3xl mb-4 leading-relaxed">
-            Beberapa karya saya dalam pengembangan aplikasi web menggunakan <span className="font-bold text-[#800000]">Laravel</span> dan teknologi modern lainnya
+            {t.projects.subtitle} <span className="font-bold text-[#800000]">{t.projects.subtitle2}</span> {t.projects.subtitle3}
           </p>
         </div>
 
@@ -133,7 +137,7 @@ export default function ProjectsSection() {
                   : "bg-[#1a1a1a] text-white/80 hover:text-white border border-[#800000]/30 hover:border-[#800000]/50 hover:bg-[#800000]/10"
               }`}
             >
-              <span className="relative z-10">{category}</span>
+              <span className="relative z-10">{t.projects.categories[category as keyof typeof t.projects.categories] || category}</span>
               {selectedCategory === category && (
                 <div className="absolute inset-0 bg-gradient-to-r from-[#800000] to-[#A52A2A] opacity-100"></div>
               )}
@@ -142,7 +146,7 @@ export default function ProjectsSection() {
         </div>
 
         {/* Modern Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 ">
           {displayedProjects.map((project, index) => (
             <div
               key={project.id}
@@ -172,7 +176,7 @@ export default function ProjectsSection() {
                       {project.status === "online" && (
                         <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
                       )}
-                      {project.status === "online" ? "Online" : "Offline"}
+                      {project.status === "online" ? t.projects.online : t.projects.offline}
                     </span>
                   </span>
                 </div>
@@ -212,14 +216,14 @@ export default function ProjectsSection() {
                       <svg className="w-4 h-4 relative z-10 group-hover/btn:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
-                      <span className="relative z-10">Kunjungi Website</span>
+                      <span className="relative z-10">{t.projects.visitWebsite}</span>
                     </a>
                   )}
                   <button
                     onClick={() => openModal(project)}
                     className="group/btn inline-flex items-center gap-2 bg-transparent border-2 border-[#800000]/50 hover:border-[#800000] text-[#800000] hover:bg-[#800000]/10 hover:text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 hover:scale-105"
                   >
-                    <span>Lihat Detail</span>
+                    <span>{t.projects.viewDetails}</span>
                     <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                     </svg>
@@ -237,7 +241,7 @@ export default function ProjectsSection() {
               onClick={() => setShowAll(!showAll)}
               className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#800000] to-[#A52A2A] hover:from-[#A52A2A] hover:to-[#800000] text-white px-6 py-3 rounded-lg font-bold text-sm shadow-lg hover:shadow-xl hover:shadow-[#800000]/30 hover:scale-105 transition-all duration-300"
             >
-              <span>{showAll ? "Tampilkan Lebih Sedikit" : `Lihat Semua Proyek (${filteredProjects.length})`}</span>
+              <span>{showAll ? t.projects.showLess : `${t.projects.showMore} (${filteredProjects.length})`}</span>
               <svg 
                 className={`w-4 h-4 transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`} 
                 fill="none" 
@@ -258,8 +262,8 @@ export default function ProjectsSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47-.881-6.08-2.33" />
               </svg>
             </div>
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Tidak ada proyek</h3>
-            <p className="text-white/70 text-base max-w-md mx-auto">Belum ada proyek dalam kategori ini. Coba pilih kategori lain atau kembali lagi nanti.</p>
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{t.projects.noProjects}</h3>
+            <p className="text-white/70 text-base max-w-md mx-auto">{t.projects.noProjectsDesc}</p>
           </div>
         )}
       </div>
@@ -380,7 +384,7 @@ export default function ProjectsSection() {
 
               {/* Technologies */}
               <div className="mb-6">
-                <h3 className="text-lg font-bold text-white mb-3">Teknologi yang Digunakan</h3>
+                <h3 className="text-lg font-bold text-white mb-3">{t.projects.technologiesUsed}</h3>
                 <div className="flex flex-wrap gap-2">
                   {selectedProject.technologies.map((tech, index) => (
                     <span
@@ -405,14 +409,14 @@ export default function ProjectsSection() {
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                    <span>Kunjungi Website</span>
+                    <span>{t.projects.visitWebsite}</span>
                   </a>
                 )}
                 <button
                   onClick={closeModal}
                   className="inline-flex items-center gap-2 bg-transparent border-2 border-[#800000]/50 hover:border-[#800000] text-[#800000] hover:bg-[#800000]/10 hover:text-white px-6 py-3 rounded-lg font-bold text-sm transition-all duration-300"
                 >
-                  Tutup
+                  {t.projects.close}
                 </button>
               </div>
             </div>

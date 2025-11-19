@@ -1,9 +1,13 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import ScrollFloat from './ScrollFloat';
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/locales/translations";
 
 
 export default function ContactSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLElement>(null);
@@ -48,12 +52,12 @@ export default function ContactSection() {
             scrollEnd='bottom bottom-=40%'
             stagger={0.03}
           >
-            Hubungi Saya
+            {t.contact.title}
           </ScrollFloat>
           </h2>
           
           <p className="text-base md:text-lg text-white/70 max-w-3xl mx-auto mb-6 leading-relaxed">
-            Mari berdiskusi tentang proyek Anda. Saya siap membantu mewujudkan ide-ide kreatif Anda menjadi kenyataan!
+            {t.contact.subtitle}
           </p>
           
           <div className="w-20 h-1 bg-[#800000] rounded-full mx-auto"></div>
@@ -64,11 +68,10 @@ export default function ContactSection() {
           <div className="bg-[#1a1a1a] rounded-3xl p-6 md:p-10 border border-[#800000]/20 shadow-2xl hover:shadow-3xl transition-all duration-300">
             <div className="text-center mb-8 md:mb-12">
               <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-[#800000]">
-                Mari Berkolaborasi
+                {t.contact.collaborate}
               </h3>
               <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
-                Saya selalu terbuka untuk proyek-proyek menarik dan kolaborasi baru. 
-                Jangan ragu untuk menghubungi saya untuk membicarakan ide atau pertanyaan Anda.
+                {t.contact.collaborateDesc}
               </p>
             </div>
 
@@ -80,11 +83,10 @@ export default function ContactSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-white mb-2 text-sm md:text-base">Email</h4>
+                <h4 className="font-semibold text-white mb-2 text-sm md:text-base">{t.contact.email}</h4>
                 <a 
                   href="mailto:intansulistiyaja@gmail.com" 
-                  className="text-[#800000] hover:text-[#A52A2A] transition-colors text-sm md:text-base"
-                >
+                  className="text-white/70 text-sm md:text-base">
                   intansulistiyaja@gmail.com
                 </a>
               </div>
@@ -96,7 +98,7 @@ export default function ContactSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-white mb-2 text-sm md:text-base">Lokasi</h4>
+                <h4 className="font-semibold text-white mb-2 text-sm md:text-base">{t.contact.location}</h4>
                 <p className="text-white/70 text-sm md:text-base">Makassar, Indonesia</p>
               </div>
 
@@ -106,13 +108,12 @@ export default function ContactSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-white mb-2 text-sm md:text-base">WhatsApp</h4>
+                <h4 className="font-semibold text-white mb-2 text-sm md:text-base">{t.contact.whatsapp}</h4>
                 <a 
                   href="https://wa.me/6281352556195" 
-                  className="text-[#800000] hover:text-[#A52A2A] transition-colors text-sm md:text-base"
+                  className="text-white/70 text-sm md:text-base"
                   target="_blank"
-                  rel="noopener noreferrer"
-                >
+                  rel="noopener noreferrer">
                   +62 813-5255-6195
                 </a>
               </div>
@@ -120,7 +121,7 @@ export default function ContactSection() {
 
             {/* Enhanced Social Media */}
             <div className="text-center">
-              <h4 className="font-bold text-xl md:text-2xl text-[#800000] mb-6 md:mb-8">Ikuti Saya</h4>
+              <h4 className="font-bold text-xl md:text-2xl text-[#800000] mb-6 md:mb-8">{t.contact.followMe}</h4>
               <div className="flex justify-center gap-4 md:gap-6">
                 <a
                   href="https://www.tiktok.com/@intannsulis?_t=ZS-8xWyYOijh28&_r=1"

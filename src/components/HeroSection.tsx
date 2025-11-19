@@ -2,22 +2,26 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import RotatingText from './RotatingText'
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/locales/translations";
 
 
 export default function HeroSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const [typedText, setTypedText] = useState("");
 
-
   useEffect(() => {
-    const fullText = "Web Developer yang percaya: detail kecil bisa membuat website jadi luar biasa.";
+    const fullText = t.hero.subtitle;
     let current = 0;
+    setTypedText("");
     const interval = setInterval(() => {
       setTypedText(fullText.slice(0, current + 1));
       current++;
       if (current === fullText.length) clearInterval(interval);
     }, 50);
     return () => clearInterval(interval);
-  }, []);
+  }, [language, t.hero.subtitle]);
 
   return (
     <section 
@@ -31,17 +35,17 @@ export default function HeroSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 items-center min-h-screen py-">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 items-center min-h-screen py-5">
           {/* Left Content Area */}
           <div className="flex flex-col justify-center space-y-5 lg:space-y-5">
             {/* Hello Badge with Animation */}
             <div className="inline-flex items-center gap-2 bg-[#800000]/10 backdrop-blur-sm border border-[#800000]/30 rounded-full px-10 py-3 w-fit shadow-lg hover:shadow-[#800000]/20 transition-all duration-300 hover:scale-105">
               <div className="w-2 h-2 bg-[#800000] rounded-full animate-pulse"></div>
               <span className="font-semibold text-sm tracking-wide inline-flex items-baseline">
-                Hello {' '}
+                {t.hero.hello}{' '}
                 <RotatingText
                   {...({
-                    texts: [' World!', ' Guys', ' How are you?', ' I am Intan'],
+                    texts: t.hero.rotatingTexts,
                     staggerFrom: "last",
                     initial: { y: "100%" },
                     animate: { y: 0 },
@@ -81,7 +85,7 @@ export default function HeroSection() {
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center justify-center gap-2 bg-[#800000] hover:bg-[#A52A2A] text-white px-8 py-2 rounded-lg font-bold text-base transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl hover:shadow-[#800000]/50 overflow-hidden"
               >
-                <span className="relative z-10">Download CV</span>
+                <span className="relative z-10">{t.hero.downloadCV}</span>
                 <svg className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
@@ -91,7 +95,7 @@ export default function HeroSection() {
                 href="#portfolio"
                 className="group inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white/20 hover:border-[#800000]/50 text-white px-8 py-2 rounded-lg font-bold text-base transition-all duration-300 transform hover:scale-105 hover:bg-white/5 backdrop-blur-sm"
               >
-                <span>My Work</span>
+                <span>{t.hero.myWork}</span>
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
@@ -124,7 +128,7 @@ export default function HeroSection() {
       {/* Enhanced Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30">
         <div className="flex flex-col items-center gap-2">
-          <span className="text-white/50 text-xs font-medium tracking-wider uppercase mb-1">Scroll</span>
+          <span className="text-white/50 text-xs font-medium tracking-wider uppercase mb-1">{t.hero.scroll}</span>
           <div className="w-6 h-10 border-2 border-[#800000]/40 rounded-full flex justify-center p-2 backdrop-blur-sm bg-[#800000]/5">
             <div className="w-1.5 h-3 bg-[#800000] rounded-full animate-scroll-down"></div>
           </div>

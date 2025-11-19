@@ -2,10 +2,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import ScrollFloat from "./ScrollFloat";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/locales/translations";
+import Carousel from './Carousel'
 
 export default function AboutSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const [isVisible, setIsVisible] = useState(false);
-  const [showFunFacts, setShowFunFacts] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -26,7 +30,7 @@ export default function AboutSection() {
       id="about"
       className="w-full py-1 px-1 bg-[#0a0a0a] relative overflow-hidden"
     >
-      <div className="max-w-9.5xl ml-0 md:ml-8 lg:ml-16 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-left mb-4">
         <span className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
@@ -38,7 +42,7 @@ export default function AboutSection() {
             scrollEnd='bottom bottom-=40%'
             stagger={0.03}
           >
-            About Me
+            {t.about.title}
           </ScrollFloat>
             </span>
           </div>
@@ -59,20 +63,20 @@ export default function AboutSection() {
                 src="/image/in.JPG"
                 alt="Intan Sulistiya"
                 fill
-                className="object-cover"
+                className="object-cover "
                 priority
               />
             </div>
           </div>
 
           {/* Teks Kanan */}
-          <div className="space-y-3 md:-ml-4 lg:-ml-25">
+          <div className="space-y-3">
             <h3 className="text-3xl md:text-4xl font-extrabold text-white">
               Intan Sulistiya
             </h3>
 
             <p className="text-[#800000] font-semibold text-lg">
-              Laravel Developer
+              {t.about.role}
             </p>
 
             {/* Experience Badge */}
@@ -81,32 +85,28 @@ export default function AboutSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span className="text-white font-semibold">
-                <span className="text-[#800000] font-bold">3</span> Tahun Pengalaman
+                <span className="text-[#800000] font-bold">3</span> {t.about.experience}
               </span>
             </div>
 
             <p className="text-lg text-white/80 leading-relaxed">
-              Halo! Saya <span className="font-bold text-[#800000]">Intan</span>,
-              seorang web developer perempuan yang sangat mencintai dunia coding.
-              Saya lebih fokus pada pengembangan{" "}
-              <span className="font-bold text-[#800000]">frontend</span> dengan
-              pendekatan bersih, rapi, dan efisien.
+              {t.about.description1} <span className="font-bold text-[#800000]">{t.about.description2}</span>
+              {t.about.description3}{" "}
+              <span className="font-bold text-[#800000]">{t.about.description4}</span> {t.about.description5}
             </p>
 
             <p className="text-lg text-white/80 leading-relaxed">
-              Saya selalu berusaha memberikan{" "}
+              {t.about.description6}{" "}
               <span className="italic text-[#800000] font-semibold">
-                sentuhan elegan dan feminim
+                {t.about.description7}
               </span>{" "}
-              pada setiap karya yang saya buat—baik dari UI/UX maupun kualitas
-              code. Fokus saya adalah menciptakan antarmuka yang menarik, responsif, dan user-friendly.
+              {t.about.description8}
             </p>
 
             <p className="text-lg text-white/80 leading-relaxed">
-              Dengan pengalaman membangun berbagai project, saya siap membantu
-              Anda menciptakan website yang{" "}
+              {t.about.description9}{" "}
               <span className="font-bold text-[#800000]">
-                modern, aman, dan nyaman digunakan.
+                {t.about.description10}
               </span>
             </p>
 
@@ -133,73 +133,60 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Fun Facts */}
-        <div className={`mt-6 transform transition-all duration-700 delay-200 ${
+        {/* Fun Facts & Services - Layout 2 Kolom */}
+        <div className={`mt-4 transform transition-all duration-700 delay-200 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}>
-          {/* Fun Facts Text Button */}
-          <button
-            onClick={() => setShowFunFacts(!showFunFacts)}
-            className="inline-flex items-center gap-2 text-lg text-white hover:text-[#800000] 
-              transition-colors duration-300 group"
-          >
-            <span className="font-semibold">Fun Facts</span>
-            <svg
-              className={`w-4 h-4 text-[#800000] transition-transform duration-300 ${
-                showFunFacts ? "rotate-180" : ""
-              }`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2.5}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* Fun Facts - Kiri */}
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-3">{t.about.funFacts}</h3>
+              <div style={{ height: '350px', position: 'relative' }}>
+                <Carousel
+                  items={t.about.funFactsItems.map((item, index) => ({
+                    id: index + 1,
+                    title: item.title,
+                    description: item.desc,
+                    icon: <span className="text-xl">{item.icon}</span>
+                  }))}
+                  baseWidth={550}
+                  autoplay={true}
+                  autoplayDelay={3000}
+                  pauseOnHover={true}
+                  loop={true}
+                  round={false}
+                />
+              </div>
+            </div>
 
-          {/* Fun Facts Content */}
-          <div
-            className={`mt-4 space-y-3 overflow-hidden transition-all duration-500 ${
-              showFunFacts ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
-            }`}
-          >
-              {[
-                {
-                  icon: "🐱",
-                  title: "Cat Enthusiast",
-                  desc: "Saya adalah babu dari si majikan bernama Bubu. Hidup lama ya Bub, jangan bosan jadi temanku! ❤😸",
-                },
-                {
-                  icon: "🍫",
-                  title: "Chocolate Lover",
-                  desc: "Cokelat adalah mood booster penting. Dark chocolate + coding = productivity naik 500%.",
-                },
-                {
-                  icon: "☕",
-                  title: "Coffee Addict",
-                  desc: "Kopi itu wajib. Americano untuk fokus, kopi gula aren untuk ide kreatif.",
-                },
-                {
-                  icon: "❤️‍🩹",
-                  title: "Mood Swing Owner",
-                  desc: "Mood saya naik turun, tetapi dari situ kreativitas muncul.",
-                },
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-3 text-white/80"
-                >
-                  <span className="text-xl flex-shrink-0">{item.icon}</span>
-                  <div>
-                    <span className="font-semibold text-[#800000]">{item.title}: </span>
-                    <span>{item.desc}</span>
+            {/* Services - Kanan */}
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-3">{t.about.services}</h3>
+              <div className="space-y-2">
+                {t.about.servicesItems.map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-gradient-to-r from-[#222] to-[#1a1a1a] border-l-4 border-[#800000] rounded-r-lg p-3 hover:border-[#A52A2A] hover:shadow-lg hover:shadow-[#800000]/20 transition-all duration-300 group"
+                  >
+                    <div className="flex items-start gap-2.5">
+                      <div className="bg-[#800000]/10 rounded-lg p-2 group-hover:bg-[#800000]/20 transition-colors duration-300">
+                        <div className="text-lg group-hover:scale-110 transition-transform duration-300">
+                          {item.icon}
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-white font-bold text-sm mb-1 group-hover:text-[#800000] transition-colors duration-300">
+                          {item.title}
+                        </h4>
+                        <p className="text-white/60 text-xs leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
