@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { motion, PanInfo, useMotionValue, useTransform } from 'motion/react';
+import { motion, PanInfo, useMotionValue, useTransform, MotionValue } from 'motion/react';
 import React, { JSX } from 'react';
 
 // replace icons with your own if needed
@@ -148,12 +148,13 @@ export default function Carousel({
         }
       };
 
-  // Create all transforms before the map to avoid calling hooks inside callbacks
-  const transforms = carouselItems.map((_, index) => {
+  // Create all transforms at the top level to avoid calling hooks inside callbacks
+  const transforms: MotionValue<number>[] = [];
+  for (let index = 0; index < carouselItems.length; index++) {
     const range = [-(index + 1) * trackItemOffset, -index * trackItemOffset, -(index - 1) * trackItemOffset];
     const outputRange = [90, 0, -90];
-    return useTransform(x, range, outputRange, { clamp: false });
-  });
+    transforms.push(useTransform(x, range, outputRange, { clamp: false }));
+  }
 
   return (
     <div
