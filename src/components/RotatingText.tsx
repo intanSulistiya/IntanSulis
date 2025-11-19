@@ -1,7 +1,7 @@
 'use client';
 
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react';
-import { motion, AnimatePresence, Transition, Variant } from 'motion/react';
+import { motion, AnimatePresence, Transition, TargetAndTransition, VariantLabels } from 'motion/react';
 
 function cn(...classes: (string | undefined | null | false)[]): string {
   return classes.filter(Boolean).join(' ');
@@ -10,9 +10,9 @@ function cn(...classes: (string | undefined | null | false)[]): string {
 interface RotatingTextProps {
   texts: string[];
   transition?: Transition;
-  initial?: Variant;
-  animate?: Variant;
-  exit?: Variant;
+  initial?: TargetAndTransition | VariantLabels;
+  animate?: TargetAndTransition | VariantLabels;
+  exit?: TargetAndTransition | VariantLabels;
   animatePresenceMode?: 'wait' | 'sync';
   animatePresenceInitial?: boolean;
   rotationInterval?: number;
@@ -25,7 +25,6 @@ interface RotatingTextProps {
   mainClassName?: string;
   splitLevelClassName?: string;
   elementLevelClassName?: string;
-  [key: string]: unknown;
 }
 
 export interface RotatingTextRef {
@@ -73,7 +72,8 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
   };
 
   const elements = useMemo<WordElement[]>(() => {
-    const currentText = texts[currentTextIndex];
+    if (!texts || texts.length === 0) return [];
+    const currentText = texts[currentTextIndex] || '';
     if (splitBy === 'characters') {
       const words = currentText.split(' ');
       return words.map((word, i) => ({

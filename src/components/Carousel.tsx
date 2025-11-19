@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { motion, PanInfo, useMotionValue, useTransform, MotionValue } from 'motion/react';
+import { motion, PanInfo, useMotionValue } from 'motion/react';
 import React, { JSX } from 'react';
 
 // replace icons with your own if needed
@@ -166,6 +166,8 @@ export default function Carousel({
         style={{
           width: itemWidth,
           gap: `${GAP}px`,
+          perspective: 1000,
+          perspectiveOrigin: `${currentIndex * trackItemOffset + itemWidth / 2}px 50%`,
           x
         }}
         onDragEnd={handleDragEnd}
