@@ -96,7 +96,7 @@ export default function ProjectsSection() {
     <section 
       ref={sectionRef}
       id="portfolio" 
-      className="w-full py-10 px3 bg-[#0a0a0a] relative overflow-hidden "
+      className="w-full py-16 md:py-20 lg:py-24 px-4 md:px-6 lg:px-8 bg-[#0a0a0a] relative overflow-hidden"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -104,16 +104,16 @@ export default function ProjectsSection() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#800000]/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
       </div>
       
-      <div className="max-w-9.5xl ml-0 md:ml-8 lg:ml-16 relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-12 lg:mb-2">
+        <div className="text-center mb-12 md:mb-16 lg:mb-20">
             <span className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
             <ScrollFloat
             scrollContainerRef={scrollContainerRef as React.RefObject<HTMLElement | null>}
             animationDuration={1}
             ease='back.inOut(2)'
             scrollStart='center bottom+=50%'
-            scrollEnd='bottom bottom-=40%'
+            scrollEnd='bottomAQ bottom-=40%'
             stagger={0.03}
           >
             {t.projects.title}
@@ -121,13 +121,13 @@ export default function ProjectsSection() {
             </span>
 
           
-          <p className="text-lg text-left text-white/80 max-w-3xl mb-4 leading-relaxed">
+          <p className="text-base md:text-lg text-center text-white/80 max-w-3xl mx-auto mb-8 leading-relaxed">
             {t.projects.subtitle} <span className="font-bold text-[#800000]">{t.projects.subtitle2}</span> {t.projects.subtitle3}
           </p>
         </div>
 
         {/* Modern Category Filter */}
-        <div className={`flex flex-wrap gap-2 md:gap-3 mb-6 md:mb-8 transform transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`flex flex-wrap justify-center gap-3 md:gap-4 mb-10 md:mb-12 lg:mb-16 transform transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {categories.map((category) => (
             <button
               key={category}
@@ -147,7 +147,7 @@ export default function ProjectsSection() {
         </div>
 
         {/* Modern Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
           {displayedProjects.map((project, index) => (
             <div
               key={project.id}
@@ -161,9 +161,9 @@ export default function ProjectsSection() {
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
               
               {/* Project Content */}
-              <div className="p-5 md:p-6 relative">
+              <div className="p-6 md:p-7 lg:p-8 relative">
                 {/* Category and Status Badges */}
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-5">
                   <span className="px-3 py-1 text-xs font-bold bg-[#1a1a1a]/95 backdrop-blur-sm text-[#800000] rounded-full border border-[#800000]/40 group-hover:border-[#800000]/60 group-hover:bg-[#800000]/10 transition-all duration-300">
                     {project.category}
                   </span>
@@ -181,16 +181,16 @@ export default function ProjectsSection() {
                     </span>
                   </span>
                 </div>
-                <h3 className="text-xl md:text-2xl font-extrabold mb-3 text-white leading-tight group-hover:text-[#800000] transition-colors duration-300">
+                <h3 className="text-xl md:text-2xl font-extrabold mb-4 text-white leading-tight group-hover:text-[#800000] transition-colors duration-300">
                   {project.title}
                 </h3>
                 
-                <p className="text-white/80 mb-4 text-sm md:text-base leading-relaxed group-hover:text-white/90 transition-colors duration-300">
+                <p className="text-white/80 mb-6 text-sm md:text-base leading-relaxed group-hover:text-white/90 transition-colors duration-300">
                   {project.description}
                 </p>
                 
                 {/* Technologies Tags */}
-                <div className="mb-5">
+                <div className="mb-6">
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, techIndex) => (
                       <span
@@ -205,7 +205,7 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-3">
                   {project.status === "online" && project.url && (
                   <a
                       href={project.url}
@@ -237,7 +237,7 @@ export default function ProjectsSection() {
 
         {/* Show More/Less Button */}
         {filteredProjects.length > 3 && (
-          <div className="flex justify-center mt-6 md:mt-8">
+          <div className="flex justify-center mt-10 md:mt-12 lg:mt-16">
             <button
               onClick={() => setShowAll(!showAll)}
               className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#800000] to-[#A52A2A] hover:from-[#A52A2A] hover:to-[#800000] text-white px-6 py-3 rounded-lg font-bold text-sm shadow-lg hover:shadow-xl hover:shadow-[#800000]/30 hover:scale-105 transition-all duration-300"
@@ -257,7 +257,7 @@ export default function ProjectsSection() {
 
         {/* Empty State */}
         {filteredProjects.length === 0 && (
-          <div className="text-center py-12 md:py-16">
+          <div className="text-center py-16 md:py-20 lg:py-24">
             <div className="w-20 h-20 md:w-24 md:h-24 bg-[#800000]/10 border-2 border-[#800000]/20 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
               <svg className="w-10 h-10 md:w-12 md:h-12 text-[#800000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47-.881-6.08-2.33" />
@@ -291,7 +291,7 @@ export default function ProjectsSection() {
 
             {/* Image Slider */}
             {selectedProject.images && selectedProject.images.length > 0 && (
-              <div className="relative w-full h-64 md:h-96 bg-[#0a0a0a]">
+              <div className="relative w-full h-72 md:h-[28rem] lg:h-[32rem] bg-[#0a0a0a]">
                 <div className="relative w-full h-full">
                   <Image
                     src={selectedProject.images[currentImageIndex]}
@@ -351,9 +351,9 @@ export default function ProjectsSection() {
             )}
 
             {/* Project Details */}
-            <div className="p-6 md:p-8">
+            <div className="p-8 md:p-10 lg:p-12">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-6">
                 <div className="flex-1">
                   <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-2">
                     {selectedProject.title}
@@ -379,14 +379,14 @@ export default function ProjectsSection() {
               </div>
 
               {/* Description */}
-              <p className="text-white/90 mb-6 text-base md:text-lg leading-relaxed">
+              <p className="text-white/90 mb-8 text-base md:text-lg leading-relaxed">
                 {selectedProject.detailDescription || selectedProject.description}
               </p>
 
               {/* Technologies */}
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-white mb-3">{t.projects.technologiesUsed}</h3>
-                <div className="flex flex-wrap gap-2">
+              <div className="mb-8">
+                <h3 className="text-lg font-bold text-white mb-4">{t.projects.technologiesUsed}</h3>
+                <div className="flex flex-wrap gap-3">
                   {selectedProject.technologies.map((tech, index) => (
                     <span
                       key={index}
@@ -399,7 +399,7 @@ export default function ProjectsSection() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-4 mt-8">
                 {selectedProject.status === "online" && selectedProject.url && (
                   <a
                     href={selectedProject.url}

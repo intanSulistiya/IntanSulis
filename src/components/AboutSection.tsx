@@ -10,8 +10,29 @@ export default function AboutSection() {
   const { language } = useLanguage();
   const t = translations[language];
   const [isVisible, setIsVisible] = useState(false);
+  const [carouselWidth, setCarouselWidth] = useState(350);
   const sectionRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const updateCarouselWidth = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setCarouselWidth(Math.min(width - 60, 350));
+      } else if (width < 768) {
+        setCarouselWidth(Math.min(width - 80, 450));
+      } else if (width < 1024) {
+        setCarouselWidth(Math.min(width - 100, 500));
+      } else {
+        setCarouselWidth(550);
+      }
+    };
+
+    updateCarouselWidth();
+    window.addEventListener('resize', updateCarouselWidth);
+    return () => window.removeEventListener('resize', updateCarouselWidth);
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
@@ -140,9 +161,9 @@ export default function AboutSection() {
         }`}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Fun Facts - Kiri */}
-            <div>
+            <div className="w-full">
               <h3 className="text-lg font-semibold text-white mb-3">{t.about.funFacts}</h3>
-              <div style={{ height: '350px', position: 'relative' }}>
+              <div className="w-full flex justify-center lg:justify-start">
                 <Carousel
                   items={t.about.funFactsItems.map((item, index) => ({
                     id: index + 1,
@@ -150,7 +171,7 @@ export default function AboutSection() {
                     description: item.desc,
                     icon: <span className="text-xl">{item.icon}</span>
                   }))}
-                  baseWidth={550}
+                  baseWidth={carouselWidth}
                   autoplay={true}
                   autoplayDelay={3000}
                   pauseOnHover={true}
