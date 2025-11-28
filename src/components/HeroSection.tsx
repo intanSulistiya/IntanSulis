@@ -124,14 +124,14 @@ export default function HeroSection() {
       </div>
 
       {/* Enhanced Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30">
+      {/* <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30">
         <div className="flex flex-col items-center gap-2">
           <span className="text-white/50 text-xs font-medium tracking-wider uppercase mb-1">{t.hero.scroll}</span>
           <div className="w-6 h-10 border-2 border-[#800000]/40 rounded-full flex justify-center p-2 backdrop-blur-sm bg-[#800000]/5">
             <div className="w-1.5 h-3 bg-[#800000] rounded-full animate-scroll-down"></div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Animation Styles */}
       <style jsx>{`
