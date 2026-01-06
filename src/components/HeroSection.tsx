@@ -26,20 +26,20 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a]"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#fafafa]"
     >
-      {/* Enhanced Animated Background with Mesh Gradient */}
+      {/* Subtle Background Effects for White Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Mesh Gradient Base */}
-        <div className="absolute inset-0 bg-mesh-gradient"></div>
+        {/* Soft Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-[#fafafa] to-[#f5f5f5]"></div>
 
-        {/* Geometric Pattern Overlay */}
-        <div className="absolute inset-0 geometric-pattern opacity-30"></div>
+        {/* Subtle Geometric Pattern */}
+        <div className="absolute inset-0 geometric-pattern opacity-5"></div>
 
-        {/* Animated Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#800000]/8 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#A52A2A]/6 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#800000]/4 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+        {/* Soft Accent Orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#800000]/3 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#A52A2A]/2 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#800000]/2 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
@@ -47,9 +47,9 @@ export default function HeroSection() {
           {/* Left Content Area */}
           <div className="flex flex-col justify-center space-y-5 lg:space-y-5">
             {/* Hello Badge with Glass Effect */}
-            <div className="inline-flex items-center gap-2 glass-effect rounded-full px-10 py-3 w-fit shadow-xl hover:shadow-2xl hover:shadow-[#800000]/20 transition-all duration-300 hover:scale-105 border border-[#800000]/20">
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-10 py-3 w-fit shadow-lg hover:shadow-xl hover:shadow-[#800000]/10 transition-all duration-300 hover:scale-105 border border-[#800000]/20">
               <div className="w-2 h-2 bg-[#A52A2A] rounded-full animate-pulse shadow-lg shadow-[#A52A2A]/50"></div>
-              <span className="font-semibold text-sm tracking-wide inline-flex items-baseline text-white/95 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+              <span className="font-semibold text-sm tracking-wide inline-flex items-baseline text-gray-800">
                 {t.hero.hello}{' '}
                 <RotatingText
                   texts={t.hero.rotatingTexts}
@@ -67,7 +67,7 @@ export default function HeroSection() {
               </span>
             </div>
             {/* Main Heading with Enhanced Gradient */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[1.05] tracking-tight">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-gray-900 leading-[1.05] tracking-tight">
               <span className="block font-plus-jakarta">Intan</span>
               <span className="block bg-gradient-to-r from-[#800000] via-[#A52A2A] to-[#800000] bg-clip-text text-transparent animate-gradient-shift font-plus-jakarta">
                 Sulistiya
@@ -76,7 +76,7 @@ export default function HeroSection() {
 
             {/* Subtitle with Enhanced Contrast */}
             <div className="min-h-[80px] flex items-center">
-              <p className="text-xl sm:text-xl md:text-xl text-white/95 leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+              <p className="text-xl sm:text-xl md:text-xl text-gray-700 leading-relaxed font-medium">
                 {typedText}
                 <span className="inline-block w-1 h-5 align-middle bg-[#A52A2A] ml-2 animate-blink rounded-sm shadow-lg shadow-[#A52A2A]/50"></span>
               </p>
@@ -97,7 +97,7 @@ export default function HeroSection() {
               </a>
               <a
                 href="#portfolio"
-                className="group inline-flex items-center justify-center gap-2 glass-effect border border-[#800000]/30 hover:border-[#800000]/60 text-white px-8 py-3.5 rounded-xl font-bold text-base transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[#800000]/20"
+                className="group inline-flex items-center justify-center gap-2 bg-white/80 backdrop-blur-sm border border-[#800000]/30 hover:border-[#800000]/60 text-gray-800 hover:text-gray-900 px-8 py-3.5 rounded-xl font-bold text-base transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[#800000]/10"
               >
                 <span>{t.hero.myWork}</span>
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,10 +110,27 @@ export default function HeroSection() {
           {/* Right Content Area - Enhanced Image with Glass Effect */}
           <div className="relative flex items-center justify-center lg:justify-end">
             <div className="relative w-full max-w-lg">
-              {/* Profile Image Container with Enhanced Glow */}
+              {/* Profile Image Container with Shadow Effect */}
               <div className="relative z-10 group">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#800000]/30 via-[#A52A2A]/20 to-[#800000]/30 rounded-3xl blur-3xl group-hover:blur-2xl transition-all duration-500"></div>
-                <div className="relative w-full aspect-square max-w-sm mx-auto rounded-3xl overflow-hidden glass-effect group-hover:border-[#800000]/50 transition-all duration-500 shadow-2xl">
+                {/* Shadow Layers */}
+                <div className="absolute inset-0 rounded-3xl opacity-30 group-hover:opacity-40 transition-opacity duration-500"
+                  style={{
+                    filter: 'blur(40px)',
+                    background: 'radial-gradient(ellipse at center, rgba(128,0,0,0.25) 0%, rgba(165,42,42,0.15) 50%, transparent 80%)',
+                    transform: 'scale(1.1) translateY(10px)',
+                  }}
+                ></div>
+                <div className="absolute inset-0 rounded-3xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"
+                  style={{
+                    filter: 'blur(60px)',
+                    background: 'radial-gradient(ellipse at center, rgba(128,0,0,0.3) 0%, transparent 70%)',
+                    transform: 'scale(1.2) translateY(15px)',
+                  }}
+                ></div>
+                
+                <div className="relative w-full aspect-square max-w-sm mx-auto rounded-3xl overflow-hidden bg-white/90 backdrop-blur-sm border border-gray-200/50 group-hover:border-[#800000]/30 transition-all duration-500" style={{
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 40px rgba(128, 0, 0, 0.2), 0 0 80px rgba(165, 42, 42, 0.15)',
+                }}>
                   <Image
                     src="/image/intan.jpeg"
                     alt="Intan Sulistiya"

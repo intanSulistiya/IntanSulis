@@ -26,31 +26,31 @@ const DEFAULT_ITEMS: CarouselItem[] = [
     title: 'Text Animations',
     description: 'Cool text animations for your projects.',
     id: 1,
-    icon: <FiFileText className="h-[16px] w-[16px] text-white" />
+    icon: <FiFileText className="h-[20px] w-[20px] text-[#800000]" />
   },
   {
     title: 'Animations',
     description: 'Smooth animations for your projects.',
     id: 2,
-    icon: <FiCircle className="h-[16px] w-[16px] text-white" />
+    icon: <FiCircle className="h-[20px] w-[20px] text-[#800000]" />
   },
   {
     title: 'Components',
     description: 'Reusable components for your projects.',
     id: 3,
-    icon: <FiLayers className="h-[16px] w-[16px] text-white" />
+    icon: <FiLayers className="h-[20px] w-[20px] text-[#800000]" />
   },
   {
     title: 'Backgrounds',
     description: 'Beautiful backgrounds and patterns for your projects.',
     id: 4,
-    icon: <FiLayout className="h-[16px] w-[16px] text-white" />
+    icon: <FiLayout className="h-[20px] w-[20px] text-[#800000]" />
   },
   {
     title: 'Common UI',
     description: 'Common UI components are coming soon!',
     id: 5,
-    icon: <FiCode className="h-[16px] w-[16px] text-white" />
+    icon: <FiCode className="h-[20px] w-[20px] text-[#800000]" />
   }
 ];
 
@@ -152,7 +152,7 @@ export default function Carousel({
     <div
       ref={containerRef}
       className={`relative overflow-hidden p-4 ${
-        round ? 'rounded-full border border-white' : 'rounded-[24px] border border-[#222]'
+        round ? 'rounded-full border border-white/20' : 'rounded-[24px] border border-gray-200/50'
       }`}
       style={{
         width: `${baseWidth}px`,
@@ -178,10 +178,10 @@ export default function Carousel({
         {carouselItems.map((item, index) => (
             <motion.div
               key={index}
-              className={`relative shrink-0 flex flex-col ${
+              className={`relative shrink-0 flex flex-col group ${
                 round
-                  ? 'items-center justify-center text-center bg-[#060010] border-0'
-                  : 'items-start justify-between bg-[#222] border border-[#222] rounded-[12px]'
+                  ? 'items-center justify-center text-center bg-white/10 backdrop-blur-md border-0'
+                  : 'items-start justify-between bg-white/80 backdrop-blur-md border border-gray-200/50 rounded-[16px] shadow-lg hover:shadow-xl transition-all duration-300'
               } overflow-hidden cursor-grab active:cursor-grabbing`}
               style={{
                 width: itemWidth,
@@ -189,38 +189,41 @@ export default function Carousel({
                 ...(round && { borderRadius: '50%' })
               }}
               transition={effectiveTransition}
+              whileHover={{ scale: 1.02 }}
             >
               <div className={`${round ? 'p-0 m-0' : 'mb-4 p-5'}`}>
-                <span className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#060010]">
+                <span className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-gradient-to-br from-[#800000]/20 to-[#A52A2A]/20 border border-[#800000]/30 group-hover:from-[#800000]/30 group-hover:to-[#A52A2A]/30 transition-all duration-300">
                   {item.icon}
                 </span>
               </div>
               <div className="p-5">
-                <div className="mb-1 font-black text-lg text-white">{item.title}</div>
-                <p className="text-sm text-white">{item.description}</p>
+                <div className="mb-2 font-black text-lg text-gray-900 group-hover:text-[#800000] transition-colors duration-300">{item.title}</div>
+                <p className="text-sm text-gray-700 leading-relaxed">{item.description}</p>
               </div>
             </motion.div>
         ))}
       </motion.div>
       <div className={`flex w-full justify-center ${round ? 'absolute z-20 bottom-12 left-1/2 -translate-x-1/2' : ''}`}>
-        <div className="mt-4 flex w-[150px] justify-between px-8">
+        <div className="mt-4 flex w-[150px] justify-between px-8 gap-2">
           {items.map((_, index) => (
             <motion.div
               key={index}
-              className={`h-2 w-2 rounded-full cursor-pointer transition-colors duration-150 ${
+              className={`h-2.5 w-2.5 rounded-full cursor-pointer transition-all duration-300 ${
                 currentIndex % items.length === index
                   ? round
-                    ? 'bg-white'
-                    : 'bg-[#333333]'
+                    ? 'bg-[#800000]'
+                    : 'bg-[#800000]'
                   : round
-                    ? 'bg-[#555]'
-                    : 'bg-[rgba(51,51,51,0.4)]'
+                    ? 'bg-gray-300'
+                    : 'bg-gray-300/60'
               }`}
               animate={{
-                scale: currentIndex % items.length === index ? 1.2 : 1
+                scale: currentIndex % items.length === index ? 1.3 : 1,
+                opacity: currentIndex % items.length === index ? 1 : 0.5
               }}
+              whileHover={{ scale: 1.2 }}
               onClick={() => setCurrentIndex(index)}
-              transition={{ duration: 0.15 }}
+              transition={{ duration: 0.2 }}
             />
           ))}
         </div>

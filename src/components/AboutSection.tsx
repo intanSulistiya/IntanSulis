@@ -50,11 +50,11 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="w-full py-20 px-1 bg-[#0a0a0a] relative overflow-hidden"
+      className="w-full py-20 px-1 bg-[#fafafa] relative overflow-hidden"
     >
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-mesh-gradient opacity-50"></div>
-      <div className="absolute inset-0 geometric-pattern opacity-20"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-[#fafafa] to-[#f5f5f5]"></div>
+      <div className="absolute inset-0 geometric-pattern opacity-5"></div>
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-left mb-12">
@@ -65,7 +65,7 @@ export default function AboutSection() {
             scrollStart='center bottom+=50%'
             scrollEnd='bottom bottom-=40%'
             stagger={0.03}
-            containerClassName="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-white font-plus-jakarta"
+            containerClassName="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-gray-900 font-plus-jakarta"
           >
             {t.about.title}
           </ScrollFloat>
@@ -80,8 +80,8 @@ export default function AboutSection() {
         >
           {/* Foto Kiri */}
           <div className="flex justify-start group">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#800000]/30 via-[#A52A2A]/20 to-[#800000]/30 rounded-3xl blur-3xl group-hover:blur-2xl transition-all duration-500"></div>
-            <div className="relative w-full aspect-square max-w-sm rounded-3xl overflow-hidden glass-effect group-hover:border-[#800000]/50 transition-all duration-500 shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#800000]/15 via-[#A52A2A]/10 to-[#800000]/15 rounded-3xl blur-3xl group-hover:blur-2xl transition-all duration-500"></div>
+            <div className="relative w-full aspect-square max-w-sm rounded-3xl overflow-hidden bg-white/90 backdrop-blur-sm border border-gray-200/50 group-hover:border-[#800000]/30 transition-all duration-500 shadow-lg">
               <Image
                 src="/image/in.JPG"
                 alt="Intan Sulistiya"
@@ -94,31 +94,31 @@ export default function AboutSection() {
 
           {/* Teks Kanan */}
           <div className="space-y-3">
-            <h3 className="text-3xl md:text-4xl font-extrabold text-white font-plus-jakarta">
+            <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 font-plus-jakarta">
               Intan Sulistiya
             </h3>
 
-            <p className="text-[#A52A2A] font-semibold text-lg drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+            <p className="text-[#A52A2A] font-semibold text-lg">
               {t.about.role}
             </p>
 
             {/* Experience Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 glass-effect border border-[#800000]/30 rounded-xl shadow-lg">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-[#800000]/30 rounded-xl shadow-lg">
               <svg className="w-5 h-5 text-[#A52A2A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="text-white/95 font-semibold">
+              <span className="text-gray-800 font-semibold">
                 <span className="text-[#A52A2A] font-bold">3</span> {t.about.experience}
               </span>
             </div>
 
-            <p className="text-lg text-white/90 leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+            <p className="text-lg text-gray-700 leading-relaxed">
               {t.about.description1} <span className="font-bold text-[#A52A2A]">{t.about.description2}</span>
               {t.about.description3}{" "}
               <span className="font-bold text-[#A52A2A]">{t.about.description4}</span> {t.about.description5}
             </p>
 
-            <p className="text-lg text-white/90 leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+            <p className="text-lg text-gray-700 leading-relaxed">
               {t.about.description6}{" "}
               <span className="italic text-[#A52A2A] font-semibold">
                 {t.about.description7}
@@ -126,7 +126,7 @@ export default function AboutSection() {
               {t.about.description8}
             </p>
 
-            <p className="text-lg text-white/90 leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+            <p className="text-lg text-gray-700 leading-relaxed">
               {t.about.description9}{" "}
               <span className="font-bold text-[#A52A2A]">
                 {t.about.description10}
@@ -142,13 +142,13 @@ export default function AboutSection() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="w-16 h-16 glass-effect border-2 border-[#800000]/30 rounded-xl flex flex-col items-center justify-center
-                    hover:scale-110 hover:border-[#A52A2A]/60 hover:shadow-xl hover:shadow-[#800000]/30 transition-all duration-300 group"
+                  className="w-16 h-16 bg-white/80 backdrop-blur-sm border-2 border-[#800000]/30 rounded-xl flex flex-col items-center justify-center
+                    hover:scale-110 hover:border-[#A52A2A]/60 hover:shadow-xl hover:shadow-[#800000]/20 transition-all duration-300 group"
                 >
-                  <span className="text-[#A52A2A] font-extrabold text-lg group-hover:text-white transition-colors">
+                  <span className="text-[#A52A2A] font-extrabold text-lg group-hover:text-[#800000] transition-colors">
                     {item.short}
                   </span>
-                  <span className="text-white/70 text-xs group-hover:text-white/90 transition-colors">{item.label}</span>
+                  <span className="text-gray-600 text-xs group-hover:text-gray-800 transition-colors">{item.label}</span>
                 </div>
               ))}
             </div>
@@ -161,7 +161,7 @@ export default function AboutSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Fun Facts - Kiri */}
             <div className="w-full">
-              <h3 className="text-xl font-bold text-white/95 mb-3 font-plus-jakarta">{t.about.funFacts}</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3 font-plus-jakarta">{t.about.funFacts}</h3>
               <div className="w-full flex justify-center lg:justify-start">
                 <Carousel
                   items={t.about.funFactsItems.map((item, index) => ({
@@ -182,12 +182,12 @@ export default function AboutSection() {
 
             {/* Services - Kanan */}
             <div>
-              <h3 className="text-xl font-bold text-white/95 mb-3 font-plus-jakarta">{t.about.services}</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3 font-plus-jakarta">{t.about.services}</h3>
               <div className="space-y-2">
                 {t.about.servicesItems.map((item, index) => (
                   <div
                     key={index}
-                    className="glass-effect border-l-4 border-[#800000] rounded-r-xl p-4 hover:border-[#A52A2A] hover:shadow-xl hover:shadow-[#800000]/30 transition-all duration-300 group"
+                    className="bg-white/80 backdrop-blur-sm border-l-4 border-[#800000] rounded-r-xl p-4 hover:border-[#A52A2A] hover:shadow-xl hover:shadow-[#800000]/10 transition-all duration-300 group"
                   >
                     <div className="flex items-start gap-2.5">
                       <div className="bg-[#800000]/10 rounded-lg p-2 group-hover:bg-[#800000]/20 transition-colors duration-300">
@@ -196,10 +196,10 @@ export default function AboutSection() {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-white/95 font-bold text-sm mb-1 group-hover:text-[#A52A2A] transition-colors duration-300">
+                        <h4 className="text-gray-900 font-bold text-sm mb-1 group-hover:text-[#A52A2A] transition-colors duration-300">
                           {item.title}
                         </h4>
-                        <p className="text-white/70 text-xs leading-relaxed">
+                        <p className="text-gray-600 text-xs leading-relaxed">
                           {item.desc}
                         </p>
                       </div>

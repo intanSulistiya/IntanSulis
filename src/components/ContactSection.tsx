@@ -38,13 +38,13 @@ export default function ContactSection() {
     <section 
       ref={sectionRef}
       id="contact" 
-      className="w-full py-1 px-2 bg-[#0a0a0a] relative overflow-hidden"
+      className="w-full py-1 px-2 bg-[#fafafa] relative overflow-hidden"
     >
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 lg:mb-2">
-          <span className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
+          <span className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900">
           <ScrollFloat
             scrollContainerRef={scrollContainerRef as React.RefObject<HTMLElement | null>}
             animationDuration={1}
@@ -57,7 +57,7 @@ export default function ContactSection() {
           </ScrollFloat>
           </span>
           
-          <p className="text-base md:text-lg text-white/70 max-w-3xl mx-auto mb-6 leading-relaxed">
+          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto mb-6 leading-relaxed">
             {t.contact.subtitle}
           </p>
           
@@ -66,12 +66,12 @@ export default function ContactSection() {
 
         {/* Enhanced Contact Content */}
         <div className={`max-w-4xl mx-auto transform transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="bg-[#1a1a1a] rounded-3xl p-6 md:p-10 border border-[#800000]/20 shadow-2xl hover:shadow-3xl transition-all duration-300">
+          <div className="bg-white rounded-3xl p-6 md:p-10 border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300">
             <div className="text-center mb-8 md:mb-12">
               <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-[#800000]">
                 {t.contact.collaborate}
               </h3>
-              <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto">
                 {t.contact.collaborateDesc}
               </p>
             </div>
@@ -84,10 +84,10 @@ export default function ContactSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-white mb-2 text-sm md:text-base">{t.contact.email}</h4>
+                <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">{t.contact.email}</h4>
                 <a 
                   href="mailto:intansulistiyaja@gmail.com" 
-                  className="text-white/70 text-sm md:text-base">
+                  className="text-gray-600 text-sm md:text-base">
                   intansulistiyaja@gmail.com
                 </a>
               </div>
@@ -99,8 +99,8 @@ export default function ContactSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-white mb-2 text-sm md:text-base">{t.contact.location}</h4>
-                <p className="text-white/70 text-sm md:text-base">Makassar, Indonesia</p>
+                <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">{t.contact.location}</h4>
+                <p className="text-gray-600 text-sm md:text-base">Makassar, Indonesia</p>
               </div>
 
               <div className="text-center group transform hover:scale-105 transition-all duration-300">
@@ -109,10 +109,10 @@ export default function ContactSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-white mb-2 text-sm md:text-base">{t.contact.whatsapp}</h4>
+                <h4 className="font-semibold text-gray-900 mb-2 text-sm md:text-base">{t.contact.whatsapp}</h4>
                 <a 
                   href="https://wa.me/6281352556195" 
-                  className="text-white/70 text-sm md:text-base"
+                  className="text-gray-600 text-sm md:text-base"
                   target="_blank"
                   rel="noopener noreferrer">
                   +62 813-5255-6195
@@ -128,7 +128,7 @@ export default function ContactSection() {
                   href="https://www.tiktok.com/@intannsulis?_t=ZS-8xWyYOijh28&_r=1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative w-16 h-16 bg-[#1a1a1a] border border-[#800000]/30 rounded-2xl flex items-center justify-center hover:border-[#800000]/60 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-2 hover:scale-110"
+                  className="group relative w-16 h-16 bg-white border border-[#800000]/30 rounded-2xl flex items-center justify-center hover:border-[#800000]/60 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-2 hover:scale-110"
                   title="TikTok"
                 >
                   <svg className="w-5 h-5 md:w-6 md:h-6 text-[#800000] group-hover:text-[#A52A2A] transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -139,7 +139,7 @@ export default function ContactSection() {
                   href="https://instagram.com/Thv.sulis"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative w-16 h-16 bg-[#1a1a1a] border border-[#800000]/30 rounded-2xl flex items-center justify-center hover:border-[#800000]/60 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-2 hover:scale-110"
+                  className="group relative w-16 h-16 bg-white border border-[#800000]/30 rounded-2xl flex items-center justify-center hover:border-[#800000]/60 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-2 hover:scale-110"
                   title="Instagram"
                 >
                   <svg className="w-5 h-5 md:w-6 md:h-6 text-[#800000] group-hover:text-[#A52A2A] transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -148,7 +148,7 @@ export default function ContactSection() {
                 </a>
                 <a
                   href="https://github.com/intansulistiya"
-                  className="group relative w-16 h-16 bg-[#1a1a1a] border border-[#800000]/30 rounded-2xl flex items-center justify-center hover:border-[#800000]/60 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-2 hover:scale-110"
+                  className="group relative w-16 h-16 bg-white border border-[#800000]/30 rounded-2xl flex items-center justify-center hover:border-[#800000]/60 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-2 hover:scale-110"
                   title="GitHub"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -164,7 +164,7 @@ export default function ContactSection() {
       </div>
 
       {/* Smooth Gradient to Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#fafafa] via-[#fafafa]/50 to-transparent"></div>
       
       {/* Animation Styles */}
       <style jsx>{`

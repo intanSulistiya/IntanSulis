@@ -36,7 +36,7 @@ export default function LanguageSwitcher() {
       {/* Mobile backdrop */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          className="fixed inset-0 bg-black/20 z-40 md:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
@@ -45,7 +45,7 @@ export default function LanguageSwitcher() {
         {/* Language button with current flag indicator */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 px-3 py-2 md:px-2 md:py-1 text-white/80 hover:text-[#800000] font-medium transition-all duration-300 rounded-lg hover:bg-[#800000]/10 active:scale-95"
+          className="flex items-center gap-2 px-3 py-2 md:px-2 md:py-1 text-gray-700 hover:text-[#800000] font-medium transition-all duration-300 rounded-lg hover:bg-[#800000]/10 active:scale-95"
           aria-label="Change language"
           title={`Current: ${currentLanguage.name}`}
         >
@@ -73,13 +73,13 @@ export default function LanguageSwitcher() {
 
         {/* Dropdown menu */}
         {isOpen && (
-          <div className="fixed md:absolute left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 bottom-20 md:bottom-auto md:right-0 md:top-full mt-0 md:mt-2 w-[calc(100vw-2rem)] max-w-xs md:w-48 bg-[#1a1a1a] border border-[#800000]/30 rounded-xl md:rounded-lg shadow-2xl md:shadow-xl overflow-hidden z-50 backdrop-blur-sm">
+          <div className="fixed md:absolute left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 bottom-20 md:bottom-auto md:right-0 md:top-full mt-0 md:mt-2 w-[calc(100vw-2rem)] max-w-xs md:w-48 bg-white border border-gray-200 rounded-xl md:rounded-lg shadow-2xl md:shadow-xl overflow-hidden z-50 backdrop-blur-sm">
             {/* Mobile header */}
             <div className="md:hidden px-4 py-3 border-b border-[#800000]/20 flex items-center justify-between">
-              <span className="text-white font-semibold text-sm">Select Language</span>
+              <span className="text-gray-900 font-semibold text-sm">Select Language</span>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-white/60 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-gray-600 transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -96,7 +96,7 @@ export default function LanguageSwitcher() {
                   className={`w-full flex items-center gap-3 px-4 py-3 md:py-2.5 text-left transition-all duration-200 active:scale-[0.98] ${
                     language === lang.code
                       ? "bg-[#800000]/20 text-[#800000] font-semibold"
-                      : "text-white/80 hover:bg-[#800000]/10 hover:text-white active:bg-[#800000]/20"
+                      : "text-gray-700 hover:bg-[#800000]/10 hover:text-gray-900 active:bg-[#800000]/20"
                   }`}
                 >
                   <span className="text-2xl md:text-lg">{lang.flag}</span>

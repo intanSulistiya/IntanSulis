@@ -4,8 +4,8 @@ export default function Footer() {
   const [showDialog, setShowDialog] = useState(false);
 
   return (
-    <footer className="w-full text-center py-5 px-2 sm:px-6 text-sm sm:text-base bg-[#0a0a0a] border-t border-[#800000]/20 mt-16 relative">
-      <span className="inline-flex flex-wrap items-center gap-1 justify-center font-medium text-white">
+    <footer className="w-full text-center py-5 px-2 sm:px-6 text-sm sm:text-base bg-[#fafafa] border-t border-gray-200 mt-16 relative">
+      <span className="inline-flex flex-wrap items-center gap-1 justify-center font-medium text-gray-700">
         Made with
         <button
           className="text-[#800000] font-bold hover:animate-pulse focus:outline-none transition-all duration-300"
@@ -26,12 +26,12 @@ export default function Footer() {
       {showDialog && (
         <div className="fixed inset-0 z-50 flex items-end justify-center pointer-events-none">
           <div
-            className="mb-16 bg-[#1a1a1a] border border-[#800000]/30 rounded-xl shadow-xl px-4 py-3 sm:px-6 sm:py-4 flex items-center gap-3 animate-fade-in pointer-events-auto max-w-[90vw] sm:max-w-md w-full"
+            className="mb-16 bg-white border border-gray-200 rounded-xl shadow-xl px-4 py-3 sm:px-6 sm:py-4 flex items-center gap-3 animate-fade-in pointer-events-auto max-w-[90vw] sm:max-w-md w-full"
             style={{ backdropFilter: 'blur(4px)' }}
           >
             <span className="text-[#800000] text-xl">♥</span>
             <button
-              className="ml-2 text-white/60 hover:text-[#800000] text-lg font-bold focus:outline-none w-8 h-8 flex items-center justify-center"
+              className="ml-2 text-gray-400 hover:text-[#800000] text-lg font-bold focus:outline-none w-8 h-8 flex items-center justify-center"
               aria-label="Close dialog"
               onClick={() => setShowDialog(false)}
               type="button"
@@ -41,7 +41,7 @@ export default function Footer() {
           </div>
           {/* Overlay untuk klik di luar dialog */}
           <div
-            className="fixed inset-0 z-40 bg-black/50"
+            className="fixed inset-0 z-40 bg-black/20"
             onClick={() => setShowDialog(false)}
           />
         </div>

@@ -102,14 +102,14 @@ export default function ProjectsSection() {
     <section
       ref={sectionRef}
       id="portfolio"
-      className="w-full py-16 md:py-20 lg:py-24 px-4 md:px-6 lg:px-8 bg-[#0a0a0a] relative overflow-hidden"
+      className="w-full py-16 md:py-20 lg:py-24 px-4 md:px-6 lg:px-8 bg-[#fafafa] relative overflow-hidden"
     >
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-mesh-gradient opacity-40"></div>
-        <div className="absolute inset-0 geometric-pattern opacity-15"></div>
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#800000]/8 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#A52A2A]/6 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-[#fafafa] to-[#f5f5f5]"></div>
+        <div className="absolute inset-0 geometric-pattern opacity-5"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#800000]/3 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#A52A2A]/2 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -122,12 +122,12 @@ export default function ProjectsSection() {
             scrollStart='center bottom+=50%'
             scrollEnd='bottom bottom-=40%'
             stagger={0.03}
-            containerClassName="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-white font-plus-jakarta"
+            containerClassName="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-gray-900 font-plus-jakarta"
           >
             {t.projects.title}
           </ScrollFloat>
 
-          <p className="text-base md:text-lg text-center text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+          <p className="text-base md:text-lg text-center text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
             {t.projects.subtitle} <span className="font-bold text-[#A52A2A]">{t.projects.subtitle2}</span> {t.projects.subtitle3}
           </p>
         </div>
@@ -139,8 +139,8 @@ export default function ProjectsSection() {
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`px-4 md:px-5 py-2 md:py-2.5 rounded-xl font-semibold transition-all duration-300 text-sm md:text-base relative overflow-hidden group ${selectedCategory === category
-                ? "bg-gradient-to-r from-[#800000] to-[#A52A2A] text-white shadow-xl shadow-[#800000]/40"
-                : "glass-effect text-white/90 border border-[#800000]/30 hover:border-[#A52A2A]/60 hover:text-white hover:shadow-lg hover:shadow-[#800000]/20"
+                ? "bg-gradient-to-r from-[#800000] to-[#A52A2A] text-white shadow-xl shadow-[#800000]/20"
+                : "bg-white/80 backdrop-blur-sm text-gray-700 border border-[#800000]/30 hover:border-[#A52A2A]/60 hover:text-gray-900 hover:shadow-lg hover:shadow-[#800000]/10"
                 }`}
             >
               <span className="relative z-10">{t.projects.categories[category as keyof typeof t.projects.categories] || category}</span>
@@ -156,7 +156,7 @@ export default function ProjectsSection() {
           {displayedProjects.map((project, index) => (
             <div
               key={project.id}
-              className={`group relative glass-effect rounded-2xl overflow-hidden border border-[#800000]/30 hover:border-[#A52A2A]/60 transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#800000]/30 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              className={`group relative bg-white/90 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-200/50 hover:border-[#A52A2A]/60 transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#800000]/10 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Glow Effect on Hover */}
@@ -169,7 +169,7 @@ export default function ProjectsSection() {
               <div className="p-6 md:p-7 lg:p-8 relative">
                 {/* Category and Status Badges */}
                 <div className="flex items-center justify-between mb-5">
-                  <span className="px-3 py-1 text-xs font-bold bg-[#1a1a1a]/95 backdrop-blur-sm text-[#800000] rounded-full border border-[#800000]/40 group-hover:border-[#800000]/60 group-hover:bg-[#800000]/10 transition-all duration-300">
+                  <span className="px-3 py-1 text-xs font-bold bg-white/80 backdrop-blur-sm text-[#800000] rounded-full border border-[#800000]/40 group-hover:border-[#800000]/60 group-hover:bg-[#800000]/10 transition-all duration-300">
                     {project.category}
                   </span>
                   {/* Status Badge with Pulse for Online */}
@@ -185,11 +185,11 @@ export default function ProjectsSection() {
                     </span>
                   </span>
                 </div>
-                <h3 className="text-xl md:text-2xl font-extrabold mb-4 text-white/95 leading-tight group-hover:text-[#A52A2A] transition-colors duration-300 font-plus-jakarta">
+                <h3 className="text-xl md:text-2xl font-extrabold mb-4 text-gray-900 leading-tight group-hover:text-[#A52A2A] transition-colors duration-300 font-plus-jakarta">
                   {project.title}
                 </h3>
 
-                <p className="text-white/85 mb-6 text-sm md:text-base leading-relaxed group-hover:text-white/95 transition-colors duration-300">
+                <p className="text-gray-700 mb-6 text-sm md:text-base leading-relaxed group-hover:text-gray-900 transition-colors duration-300">
                   {project.description}
                 </p>
 
@@ -199,7 +199,7 @@ export default function ProjectsSection() {
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-1.5 text-xs font-bold glass-effect text-[#A52A2A] rounded-lg border border-[#800000]/30 hover:border-[#A52A2A]/60 hover:bg-[#800000]/20 hover:scale-110 hover:shadow-md hover:shadow-[#800000]/30 transition-all duration-300 cursor-default"
+                        className="px-3 py-1.5 text-xs font-bold bg-white/80 backdrop-blur-sm text-[#A52A2A] rounded-lg border border-[#800000]/30 hover:border-[#A52A2A]/60 hover:bg-[#800000]/10 hover:scale-110 hover:shadow-md hover:shadow-[#800000]/20 transition-all duration-300 cursor-default"
                         style={{ transitionDelay: `${techIndex * 50}ms` }}
                       >
                         {tech}
@@ -226,7 +226,7 @@ export default function ProjectsSection() {
                   )}
                   <button
                     onClick={() => openModal(project)}
-                    className="group/btn inline-flex items-center gap-2 glass-effect border-2 border-[#800000]/50 hover:border-[#A52A2A] text-[#A52A2A] hover:bg-[#800000]/20 hover:text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#800000]/30"
+                    className="group/btn inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border-2 border-[#800000]/50 hover:border-[#A52A2A] text-[#A52A2A] hover:bg-[#800000]/10 hover:text-[#800000] px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#800000]/20"
                   >
                     <span>{t.projects.viewDetails}</span>
                     <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -267,8 +267,8 @@ export default function ProjectsSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47-.881-6.08-2.33" />
               </svg>
             </div>
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{t.projects.noProjects}</h3>
-            <p className="text-white/70 text-base max-w-md mx-auto">{t.projects.noProjectsDesc}</p>
+            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">{t.projects.noProjects}</h3>
+            <p className="text-gray-600 text-base max-w-md mx-auto">{t.projects.noProjectsDesc}</p>
           </div>
         )}
       </div>
@@ -276,17 +276,17 @@ export default function ProjectsSection() {
       {/* Project Detail Modal */}
       {selectedProject && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
           onClick={closeModal}
         >
           <div
-            className="relative bg-[#1a1a1a] rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto border border-[#800000]/30 shadow-2xl"
+            className="relative bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto border border-gray-200 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 z-50 w-10 h-10 flex items-center justify-center bg-[#800000]/20 hover:bg-[#800000]/40 text-white rounded-full border border-[#800000]/40 transition-all duration-300 hover:scale-110"
+              className="absolute top-4 right-4 z-50 w-10 h-10 flex items-center justify-center bg-[#800000]/20 hover:bg-[#800000]/40 text-gray-900 rounded-full border border-[#800000]/40 transition-all duration-300 hover:scale-110"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -295,7 +295,7 @@ export default function ProjectsSection() {
 
             {/* Image Slider */}
             {selectedProject.images && selectedProject.images.length > 0 && (
-              <div className="relative w-full h-72 md:h-[28rem] lg:h-[32rem] bg-[#0a0a0a]">
+              <div className="relative w-full h-72 md:h-[28rem] lg:h-[32rem] bg-white">
                 <div className="relative w-full h-full">
                   <Image
                     src={selectedProject.images[currentImageIndex]}
@@ -346,7 +346,7 @@ export default function ProjectsSection() {
 
                 {/* Image Counter */}
                 {selectedProject.images.length > 1 && (
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-[#1a1a1a]/90 backdrop-blur-sm text-white text-xs font-bold rounded-full border border-[#800000]/40">
+                  <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-sm text-gray-900 text-xs font-bold rounded-full border border-[#800000]/40">
                     {currentImageIndex + 1} / {selectedProject.images.length}
                   </div>
                 )}
@@ -358,7 +358,7 @@ export default function ProjectsSection() {
               {/* Header */}
               <div className="flex items-start justify-between mb-6">
                 <div className="flex-1">
-                  <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-2">
+                  <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">
                     {selectedProject.title}
                   </h2>
                   <div className="flex items-center gap-3 flex-wrap">
@@ -381,13 +381,13 @@ export default function ProjectsSection() {
               </div>
 
               {/* Description */}
-              <p className="text-white/90 mb-8 text-base md:text-lg leading-relaxed">
+              <p className="text-gray-700 mb-8 text-base md:text-lg leading-relaxed">
                 {selectedProject.detailDescription || selectedProject.description}
               </p>
 
               {/* Technologies */}
               <div className="mb-8">
-                <h3 className="text-lg font-bold text-white mb-4">{t.projects.technologiesUsed}</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-4">{t.projects.technologiesUsed}</h3>
                 <div className="flex flex-wrap gap-3">
                   {selectedProject.technologies.map((tech, index) => (
                     <span
@@ -417,7 +417,7 @@ export default function ProjectsSection() {
                 )}
                 <button
                   onClick={closeModal}
-                  className="inline-flex items-center gap-2 bg-transparent border-2 border-[#800000]/50 hover:border-[#800000] text-[#800000] hover:bg-[#800000]/10 hover:text-white px-6 py-3 rounded-lg font-bold text-sm transition-all duration-300"
+                  className="inline-flex items-center gap-2 bg-transparent border-2 border-[#800000]/50 hover:border-[#800000] text-[#800000] hover:bg-[#800000]/10 hover:text-[#800000] px-6 py-3 rounded-lg font-bold text-sm transition-all duration-300"
                 >
                   {t.projects.close}
                 </button>

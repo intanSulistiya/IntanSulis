@@ -34,8 +34,8 @@ export default function Header() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-      ? 'glass-effect shadow-2xl border-b border-[#800000]/30'
-      : 'bg-[#0a0a0a]/80 backdrop-blur-lg border-b border-[#800000]/10'
+      ? 'bg-white/95 backdrop-blur-sm shadow-lg border-b border-gray-200'
+      : 'bg-white/80 backdrop-blur-lg border-b border-gray-200/50'
       }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
@@ -47,12 +47,12 @@ export default function Header() {
           >
             {/* Monogram iS */}
             <div className="flex items-end leading-none">
-              <span className="text-white text-5xl font-extrabold">i</span>
+              <span className="text-gray-900 text-5xl font-extrabold">i</span>
               <span className="text-[#800000] text-5xl font-extrabold -ml-1">S</span>
             </div>
             {/* Nama */}
             <div className="flex flex-col leading-tight">
-              <span className="text-white text-x font-semibold">Intan</span>
+              <span className="text-gray-900 text-x font-semibold">Intan</span>
               <span className="text-[#800000] text-x font-semibold -mt-1">Sulistiya</span>
             </div>
           </a>
@@ -62,21 +62,21 @@ export default function Header() {
             <a
               href="#about"
               onClick={(e) => handleNavClick(e, '#about')}
-              className="text-white/90 hover:text-white font-medium transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(128,0,0,0.6)]"
+              className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-300"
             >
               {t.nav.about}
             </a>
             <a
               href="#portfolio"
               onClick={(e) => handleNavClick(e, '#portfolio')}
-              className="text-white/90 hover:text-white font-medium transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(128,0,0,0.6)]"
+              className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-300"
             >
               {t.nav.portfolio}
             </a>
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="text-white/90 hover:text-white font-medium transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(128,0,0,0.6)]"
+              className="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-300"
             >
               {t.nav.contact}
             </a>
@@ -96,7 +96,7 @@ export default function Header() {
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="relative group p-2 text-white hover:text-[#800000] focus:outline-none transition-colors duration-300"
+              className="relative group p-2 text-gray-700 hover:text-[#800000] focus:outline-none transition-colors duration-300"
             >
               <div className="w-6 h-6 relative">
                 <span className={`absolute left-0 top-1 w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? 'rotate-45 top-2.5' : ''
@@ -113,25 +113,25 @@ export default function Header() {
         {/* Mobile Navigation */}
         <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           } overflow-hidden`}>
-          <div className="px-2 pt-2 pb-4 space-y-1 glass-effect rounded-2xl mx-2 mb-4 border border-[#800000]/30 shadow-2xl">
+          <div className="px-2 pt-2 pb-4 space-y-1 bg-white/95 backdrop-blur-sm rounded-2xl mx-2 mb-4 border border-gray-200 shadow-xl">
             <a
               href="#about"
               onClick={(e) => { handleNavClick(e, '#about'); }}
-              className="block px-4 py-3 text-white/95 hover:text-white hover:bg-[#800000]/20 font-medium transition-all duration-300 rounded-lg"
+              className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium transition-all duration-300 rounded-lg"
             >
               {t.nav.about}
             </a>
             <a
               href="#portfolio"
               onClick={(e) => { handleNavClick(e, '#portfolio'); }}
-              className="block px-4 py-3 text-white/95 hover:text-white hover:bg-[#800000]/20 font-medium transition-all duration-300 rounded-lg"
+              className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium transition-all duration-300 rounded-lg"
             >
               {t.nav.portfolio}
             </a>
             <a
               href="#contact"
               onClick={(e) => { handleNavClick(e, '#contact'); }}
-              className="block px-4 py-3 text-white/95 hover:text-white hover:bg-[#800000]/20 font-medium transition-all duration-300 rounded-lg"
+              className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium transition-all duration-300 rounded-lg"
             >
               {t.nav.contact}
             </a>
