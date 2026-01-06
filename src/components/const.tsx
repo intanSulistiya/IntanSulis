@@ -60,12 +60,12 @@ export const projectsDataBilingual = {
     {
       title: "GK Cafe Online Menu",
       description: "Responsive and user-friendly online cafe menu website in Jeneponto. Displays complete menu with food and beverage categories.",
-      image: "/api/placeholder/400/250",
-      images: [
-        "/image/projects/gk-cafe-1.jpg",
-        "/image/projects/gk-cafe-2.jpg",
-        "/image/projects/gk-cafe-3.jpg"
-      ],
+      // image: "/api/placeholder/400/250",
+      // images: [
+      //   "/image/projects/gk-cafe-1.jpg",
+      //   "/image/projects/gk-cafe-2.jpg",
+      //   "/image/projects/gk-cafe-3.jpg"
+      // ],
       technologies: ["Laravel", "Filament", "MySQL"],
       link: "#",
       category: "Business",
