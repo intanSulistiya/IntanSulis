@@ -24,24 +24,32 @@ export default function HeroSection() {
   }, [language, t.hero.subtitle]);
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a]"
     >
-      {/* Animated Background Elements */}
+      {/* Enhanced Animated Background with Mesh Gradient */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#800000]/5 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#800000]/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+        {/* Mesh Gradient Base */}
+        <div className="absolute inset-0 bg-mesh-gradient"></div>
+
+        {/* Geometric Pattern Overlay */}
+        <div className="absolute inset-0 geometric-pattern opacity-30"></div>
+
+        {/* Animated Gradient Orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#800000]/8 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#A52A2A]/6 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#800000]/4 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 items-center min-h-screen py-5">
           {/* Left Content Area */}
           <div className="flex flex-col justify-center space-y-5 lg:space-y-5">
-            {/* Hello Badge with Animation */}
-            <div className="inline-flex items-center gap-2 bg-[#800000]/10 backdrop-blur-sm border border-[#800000]/30 rounded-full px-10 py-3 w-fit shadow-lg hover:shadow-[#800000]/20 transition-all duration-300 hover:scale-105">
-              <div className="w-2 h-2 bg-[#800000] rounded-full animate-pulse"></div>
-              <span className="font-semibold text-sm tracking-wide inline-flex items-baseline">
+            {/* Hello Badge with Glass Effect */}
+            <div className="inline-flex items-center gap-2 glass-effect rounded-full px-10 py-3 w-fit shadow-xl hover:shadow-2xl hover:shadow-[#800000]/20 transition-all duration-300 hover:scale-105 border border-[#800000]/20">
+              <div className="w-2 h-2 bg-[#A52A2A] rounded-full animate-pulse shadow-lg shadow-[#A52A2A]/50"></div>
+              <span className="font-semibold text-sm tracking-wide inline-flex items-baseline text-white/95 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
                 {t.hero.hello}{' '}
                 <RotatingText
                   texts={t.hero.rotatingTexts}
@@ -58,61 +66,59 @@ export default function HeroSection() {
                 />
               </span>
             </div>
-            {/* Main Heading with Gradient Effect */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
-              <span className="block">Intan</span>
-              <span className="block bg-gradient-to-r from-[#800000] via-[#A52A2A] to-[#800000] bg-clip-text text-transparent">
+            {/* Main Heading with Enhanced Gradient */}
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[1.05] tracking-tight">
+              <span className="block font-plus-jakarta">Intan</span>
+              <span className="block bg-gradient-to-r from-[#800000] via-[#A52A2A] to-[#800000] bg-clip-text text-transparent animate-gradient-shift font-plus-jakarta">
                 Sulistiya
               </span>
             </h1>
 
-            {/* Subtitle with Typing Effect */}
+            {/* Subtitle with Enhanced Contrast */}
             <div className="min-h-[80px] flex items-center">
-              <p className="text-xl sm:text-xl md:text-xl text-white leading-relaxed font-medium">
+              <p className="text-xl sm:text-xl md:text-xl text-white/95 leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                 {typedText}
-                <span className="inline-block w-1 h-5 align-middle bg-[#800000] ml-2 animate-blink rounded-sm"></span>
+                <span className="inline-block w-1 h-5 align-middle bg-[#A52A2A] ml-2 animate-blink rounded-sm shadow-lg shadow-[#A52A2A]/50"></span>
               </p>
             </div>
-            
-            {/* CTA Buttons with Enhanced Design */}
-            <div className="flex flex-col sm:flex-row  gap-4 mt-0.5">
+
+            {/* Enhanced CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-0.5">
               <a
-                // 1. Arahkan ke file CV Anda (pastikan file ada di folder 'public')
                 href="/pdf/CV-Intan-sulistiya.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center gap-2 bg-[#800000] hover:bg-[#A52A2A] text-white px-8 py-2 rounded-lg font-bold text-base transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl hover:shadow-[#800000]/50 overflow-hidden"
+                className="group relative inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#800000] to-[#A52A2A] hover:from-[#A52A2A] hover:to-[#800000] text-white px-8 py-3.5 rounded-xl font-bold text-base transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-[#800000]/60 overflow-hidden"
               >
                 <span className="relative z-10">{t.hero.downloadCV}</span>
-                <svg className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 relative z-10 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#A52A2A] to-[#800000] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
               <a
                 href="#portfolio"
-                className="group inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white/20 hover:border-[#800000]/50 text-white px-8 py-2 rounded-lg font-bold text-base transition-all duration-300 transform hover:scale-105 hover:bg-white/5 backdrop-blur-sm"
+                className="group inline-flex items-center justify-center gap-2 glass-effect border border-[#800000]/30 hover:border-[#800000]/60 text-white px-8 py-3.5 rounded-xl font-bold text-base transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[#800000]/20"
               >
                 <span>{t.hero.myWork}</span>
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
             </div>
           </div>
 
-          {/* Right Content Area - Image with Enhanced Geometric Overlays */}
+          {/* Right Content Area - Enhanced Image with Glass Effect */}
           <div className="relative flex items-center justify-center lg:justify-end">
             <div className="relative w-full max-w-lg">
-              {/* Profile Image Container with Glow Effect */}
+              {/* Profile Image Container with Enhanced Glow */}
               <div className="relative z-10 group">
-                <div className="absolute inset-0 bg-[#800000]/20 rounded-2xl blur-2xl group-hover:bg-[#800000]/30 transition-all duration-500"></div>
-                <div className="relative w-full aspect-square max-w-sm mx-auto rounded-2xl overflow-hidden border-2 border-[#800000]/20 group-hover:border-[#800000]/40 transition-all duration-500 shadow-2xl">
-                  <Image 
-                    src="/image/intan.JPG" 
-                    alt="Intan Sulistiya" 
+                <div className="absolute inset-0 bg-gradient-to-br from-[#800000]/30 via-[#A52A2A]/20 to-[#800000]/30 rounded-3xl blur-3xl group-hover:blur-2xl transition-all duration-500"></div>
+                <div className="relative w-full aspect-square max-w-sm mx-auto rounded-3xl overflow-hidden glass-effect group-hover:border-[#800000]/50 transition-all duration-500 shadow-2xl">
+                  <Image
+                    src="/image/intan.jpeg"
+                    alt="Intan Sulistiya"
                     fill
-                    className="object-cover transform group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover transform group-hover:scale-110 transition-transform duration-700"
                     priority
                     sizes="(max-width: 768px) 100vw, 500px"
                   />
@@ -152,6 +158,18 @@ export default function HeroSection() {
           }
           50% {
             opacity: 0.6;
+          }
+        }
+        .animate-gradient-shift {
+          background-size: 200% auto;
+          animation: gradient-shift 3s ease infinite;
+        }
+        @keyframes gradient-shift {
+          0%, 100% {
+            background-position: 0% center;
+          }
+          50% {
+            background-position: 100% center;
           }
         }
         .animate-float-slow {

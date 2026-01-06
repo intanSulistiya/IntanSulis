@@ -33,11 +33,10 @@ export default function Header() {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled 
-        ? 'bg-[#0a0a0a]/95 backdrop-blur-xl shadow-2xl border-b border-[#800000]/20' 
-        : 'bg-[#0a0a0a]/90 backdrop-blur-lg'
-    }`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+      ? 'glass-effect shadow-2xl border-b border-[#800000]/30'
+      : 'bg-[#0a0a0a]/80 backdrop-blur-lg border-b border-[#800000]/10'
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo*/}
@@ -63,31 +62,31 @@ export default function Header() {
             <a
               href="#about"
               onClick={(e) => handleNavClick(e, '#about')}
-              className="text-white/80 hover:text-[#800000] font-medium transition-colors duration-300"
+              className="text-white/90 hover:text-white font-medium transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(128,0,0,0.6)]"
             >
               {t.nav.about}
             </a>
             <a
               href="#portfolio"
               onClick={(e) => handleNavClick(e, '#portfolio')}
-              className="text-white/80 hover:text-[#800000] font-medium transition-colors duration-300"
+              className="text-white/90 hover:text-white font-medium transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(128,0,0,0.6)]"
             >
               {t.nav.portfolio}
             </a>
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="text-white/80 hover:text-[#800000] font-medium transition-colors duration-300"
+              className="text-white/90 hover:text-white font-medium transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(128,0,0,0.6)]"
             >
               {t.nav.contact}
             </a>
             {/* Language Switcher */}
             <LanguageSwitcher />
-            {/* Hire Me Button */}
+            {/* Enhanced Hire Me Button */}
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="bg-[#800000] hover:bg-[#A52A2A] text-white px-6 py-2.5 rounded-md font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#800000]/50"
+              className="bg-gradient-to-r from-[#800000] to-[#A52A2A] hover:from-[#A52A2A] hover:to-[#800000] text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl hover:shadow-[#800000]/50"
             >
               {t.nav.hireMe}
             </a>
@@ -100,43 +99,39 @@ export default function Header() {
               className="relative group p-2 text-white hover:text-[#800000] focus:outline-none transition-colors duration-300"
             >
               <div className="w-6 h-6 relative">
-                <span className={`absolute left-0 top-1 w-6 h-0.5 bg-current transition-all duration-300 ${
-                  isMenuOpen ? 'rotate-45 top-2.5' : ''
-                }`}></span>
-                <span className={`absolute left-0 top-2.5 w-6 h-0.5 bg-current transition-all duration-300 ${
-                  isMenuOpen ? 'opacity-0' : ''
-                }`}></span>
-                <span className={`absolute left-0 top-4 w-6 h-0.5 bg-current transition-all duration-300 ${
-                  isMenuOpen ? '-rotate-45 top-2.5' : ''
-                }`}></span>
+                <span className={`absolute left-0 top-1 w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? 'rotate-45 top-2.5' : ''
+                  }`}></span>
+                <span className={`absolute left-0 top-2.5 w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''
+                  }`}></span>
+                <span className={`absolute left-0 top-4 w-6 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? '-rotate-45 top-2.5' : ''
+                  }`}></span>
               </div>
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out ${
-          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        } overflow-hidden`}>
-          <div className="px-2 pt-2 pb-4 space-y-1 bg-[#1a1a1a]/95 backdrop-blur-md rounded-xl mx-2 mb-4 border border-[#800000]/20 shadow-lg">
+        <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          } overflow-hidden`}>
+          <div className="px-2 pt-2 pb-4 space-y-1 glass-effect rounded-2xl mx-2 mb-4 border border-[#800000]/30 shadow-2xl">
             <a
               href="#about"
               onClick={(e) => { handleNavClick(e, '#about'); }}
-              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
+              className="block px-4 py-3 text-white/95 hover:text-white hover:bg-[#800000]/20 font-medium transition-all duration-300 rounded-lg"
             >
               {t.nav.about}
             </a>
             <a
               href="#portfolio"
               onClick={(e) => { handleNavClick(e, '#portfolio'); }}
-              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
+              className="block px-4 py-3 text-white/95 hover:text-white hover:bg-[#800000]/20 font-medium transition-all duration-300 rounded-lg"
             >
               {t.nav.portfolio}
             </a>
             <a
               href="#contact"
               onClick={(e) => { handleNavClick(e, '#contact'); }}
-              className="block px-4 py-3 text-white hover:text-[#800000] hover:bg-[#800000]/10 font-medium transition-all duration-300 rounded-lg"
+              className="block px-4 py-3 text-white/95 hover:text-white hover:bg-[#800000]/20 font-medium transition-all duration-300 rounded-lg"
             >
               {t.nav.contact}
             </a>
@@ -146,7 +141,7 @@ export default function Header() {
             <a
               href="#contact"
               onClick={(e) => { handleNavClick(e, '#contact'); }}
-              className="block mx-2 mt-3 px-4 py-3 bg-[#800000] hover:bg-[#A52A2A] text-white font-bold rounded-lg text-center transition-all duration-300 hover:shadow-xl hover:scale-105"
+              className="block mx-2 mt-3 px-4 py-3 bg-gradient-to-r from-[#800000] to-[#A52A2A] hover:from-[#A52A2A] hover:to-[#800000] text-white font-bold rounded-xl text-center transition-all duration-300 hover:shadow-2xl hover:scale-105"
             >
               {t.nav.hireMe}
             </a>

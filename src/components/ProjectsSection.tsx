@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { projects, categories, Project } from "./const";
+import { getProjects, categories, Project } from "./const";
 import ScrollFloat from './ScrollFloat';
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/locales/translations";
@@ -9,6 +9,7 @@ import { translations } from "@/locales/translations";
 export default function ProjectsSection() {
   const { language } = useLanguage();
   const t = translations[language];
+  const [projects, setProjects] = useState<Project[]>(getProjects(language));
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [showAll, setShowAll] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -17,8 +18,13 @@ export default function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLElement>(null);
 
-  const filteredProjects = selectedCategory === "All" 
-    ? projects 
+  // Update projects when language changes
+  useEffect(() => {
+    setProjects(getProjects(language));
+  }, [language]);
+
+  const filteredProjects = selectedCategory === "All"
+    ? projects
     : projects.filter(project => project.category === selectedCategory);
 
   const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 3);
@@ -44,7 +50,7 @@ export default function ProjectsSection() {
   // Handle keyboard navigation
   useEffect(() => {
     if (!selectedProject) return;
-    
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         closeModal();
@@ -54,7 +60,7 @@ export default function ProjectsSection() {
         setCurrentImageIndex((prev) => (prev + 1) % selectedProject.images!.length);
       }
     };
-    
+
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedProject, currentImageIndex]);
@@ -93,36 +99,36 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="portfolio" 
+      id="portfolio"
       className="w-full py-16 md:py-20 lg:py-24 px-4 md:px-6 lg:px-8 bg-[#0a0a0a] relative overflow-hidden"
     >
-      {/* Animated Background Elements */}
+      {/* Enhanced Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#800000]/5 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#800000]/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute inset-0 bg-mesh-gradient opacity-40"></div>
+        <div className="absolute inset-0 geometric-pattern opacity-15"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#800000]/8 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#A52A2A]/6 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20">
-            <span className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
-            <ScrollFloat
+          <ScrollFloat
             scrollContainerRef={scrollContainerRef as React.RefObject<HTMLElement | null>}
             animationDuration={1}
             ease='back.inOut(2)'
             scrollStart='center bottom+=50%'
-            scrollEnd='bottomAQ bottom-=40%'
+            scrollEnd='bottom bottom-=40%'
             stagger={0.03}
+            containerClassName="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-white font-plus-jakarta"
           >
             {t.projects.title}
           </ScrollFloat>
-            </span>
 
-          
-          <p className="text-base md:text-lg text-center text-white/80 max-w-3xl mx-auto mb-8 leading-relaxed">
-            {t.projects.subtitle} <span className="font-bold text-[#800000]">{t.projects.subtitle2}</span> {t.projects.subtitle3}
+          <p className="text-base md:text-lg text-center text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+            {t.projects.subtitle} <span className="font-bold text-[#A52A2A]">{t.projects.subtitle2}</span> {t.projects.subtitle3}
           </p>
         </div>
 
@@ -132,11 +138,10 @@ export default function ProjectsSection() {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 md:px-5 py-2 md:py-2.5 rounded-full font-semibold transition-all duration-300 text-sm md:text-base relative overflow-hidden group ${
-                selectedCategory === category
-                  ? "bg-[#800000] text-white shadow-lg shadow-[#800000]/30"
-                  : "bg-[#1a1a1a] text-white/80 hover:text-white border border-[#800000]/30 hover:border-[#800000]/50 hover:bg-[#800000]/10"
-              }`}
+              className={`px-4 md:px-5 py-2 md:py-2.5 rounded-xl font-semibold transition-all duration-300 text-sm md:text-base relative overflow-hidden group ${selectedCategory === category
+                ? "bg-gradient-to-r from-[#800000] to-[#A52A2A] text-white shadow-xl shadow-[#800000]/40"
+                : "glass-effect text-white/90 border border-[#800000]/30 hover:border-[#A52A2A]/60 hover:text-white hover:shadow-lg hover:shadow-[#800000]/20"
+                }`}
             >
               <span className="relative z-10">{t.projects.categories[category as keyof typeof t.projects.categories] || category}</span>
               {selectedCategory === category && (
@@ -151,15 +156,15 @@ export default function ProjectsSection() {
           {displayedProjects.map((project, index) => (
             <div
               key={project.id}
-              className={`group relative bg-[#1a1a1a] rounded-xl overflow-hidden border border-[#800000]/20 hover:border-[#800000]/60 transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              className={`group relative glass-effect rounded-2xl overflow-hidden border border-[#800000]/30 hover:border-[#A52A2A]/60 transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#800000]/30 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Glow Effect on Hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#800000]/0 via-[#800000]/0 to-[#800000]/0 group-hover:from-[#800000]/10 group-hover:via-[#800000]/5 group-hover:to-[#800000]/10 transition-all duration-500 rounded-xl blur-xl -z-10"></div>
-              
+
               {/* Shimmer Effect */}
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
-              
+
               {/* Project Content */}
               <div className="p-6 md:p-7 lg:p-8 relative">
                 {/* Category and Status Badges */}
@@ -168,11 +173,10 @@ export default function ProjectsSection() {
                     {project.category}
                   </span>
                   {/* Status Badge with Pulse for Online */}
-                  <span className={`px-3 py-1 text-xs font-bold rounded-full border backdrop-blur-sm transition-all duration-300 ${
-                    project.status === "online" 
-                      ? "bg-green-500/20 text-green-400 border-green-500/40 group-hover:bg-green-500/30 group-hover:shadow-lg group-hover:shadow-green-500/20" 
-                      : "bg-gray-500/20 text-gray-400 border-gray-500/40"
-                  }`}>
+                  <span className={`px-3 py-1 text-xs font-bold rounded-full border backdrop-blur-sm transition-all duration-300 ${project.status === "online"
+                    ? "bg-green-500/20 text-green-400 border-green-500/40 group-hover:bg-green-500/30 group-hover:shadow-lg group-hover:shadow-green-500/20"
+                    : "bg-gray-500/20 text-gray-400 border-gray-500/40"
+                    }`}>
                     <span className="flex items-center gap-1.5">
                       {project.status === "online" && (
                         <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
@@ -181,21 +185,21 @@ export default function ProjectsSection() {
                     </span>
                   </span>
                 </div>
-                <h3 className="text-xl md:text-2xl font-extrabold mb-4 text-white leading-tight group-hover:text-[#800000] transition-colors duration-300">
+                <h3 className="text-xl md:text-2xl font-extrabold mb-4 text-white/95 leading-tight group-hover:text-[#A52A2A] transition-colors duration-300 font-plus-jakarta">
                   {project.title}
                 </h3>
-                
-                <p className="text-white/80 mb-6 text-sm md:text-base leading-relaxed group-hover:text-white/90 transition-colors duration-300">
+
+                <p className="text-white/85 mb-6 text-sm md:text-base leading-relaxed group-hover:text-white/95 transition-colors duration-300">
                   {project.description}
                 </p>
-                
+
                 {/* Technologies Tags */}
                 <div className="mb-6">
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-[#800000]/10 to-[#800000]/5 text-[#800000] rounded-lg border border-[#800000]/30 hover:border-[#800000]/60 hover:bg-[#800000]/20 hover:scale-110 hover:shadow-md hover:shadow-[#800000]/20 transition-all duration-300 cursor-default"
+                        className="px-3 py-1.5 text-xs font-bold glass-effect text-[#A52A2A] rounded-lg border border-[#800000]/30 hover:border-[#A52A2A]/60 hover:bg-[#800000]/20 hover:scale-110 hover:shadow-md hover:shadow-[#800000]/30 transition-all duration-300 cursor-default"
                         style={{ transitionDelay: `${techIndex * 50}ms` }}
                       >
                         {tech}
@@ -207,10 +211,10 @@ export default function ProjectsSection() {
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-3">
                   {project.status === "online" && project.url && (
-                  <a
+                    <a
                       href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group/btn relative inline-flex items-center gap-2 bg-gradient-to-r from-[#800000] to-[#A52A2A] hover:from-[#A52A2A] hover:to-[#800000] text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-lg hover:shadow-xl hover:shadow-[#800000]/40 hover:scale-105 transition-all duration-300 overflow-hidden"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
@@ -222,7 +226,7 @@ export default function ProjectsSection() {
                   )}
                   <button
                     onClick={() => openModal(project)}
-                    className="group/btn inline-flex items-center gap-2 bg-transparent border-2 border-[#800000]/50 hover:border-[#800000] text-[#800000] hover:bg-[#800000]/10 hover:text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all duration-300 hover:scale-105"
+                    className="group/btn inline-flex items-center gap-2 glass-effect border-2 border-[#800000]/50 hover:border-[#A52A2A] text-[#A52A2A] hover:bg-[#800000]/20 hover:text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#800000]/30"
                   >
                     <span>{t.projects.viewDetails}</span>
                     <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -240,13 +244,13 @@ export default function ProjectsSection() {
           <div className="flex justify-center mt-10 md:mt-12 lg:mt-16">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#800000] to-[#A52A2A] hover:from-[#A52A2A] hover:to-[#800000] text-white px-6 py-3 rounded-lg font-bold text-sm shadow-lg hover:shadow-xl hover:shadow-[#800000]/30 hover:scale-105 transition-all duration-300"
+              className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#800000] to-[#A52A2A] hover:from-[#A52A2A] hover:to-[#800000] text-white px-6 py-3 rounded-xl font-bold text-sm shadow-xl hover:shadow-2xl hover:shadow-[#800000]/40 hover:scale-105 transition-all duration-300"
             >
               <span>{showAll ? t.projects.showLess : `${t.projects.showMore} (${filteredProjects.length})`}</span>
-              <svg 
-                className={`w-4 h-4 transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`} 
-                fill="none" 
-                stroke="currentColor" 
+              <svg
+                className={`w-4 h-4 transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
@@ -271,11 +275,11 @@ export default function ProjectsSection() {
 
       {/* Project Detail Modal */}
       {selectedProject && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
           onClick={closeModal}
         >
-          <div 
+          <div
             className="relative bg-[#1a1a1a] rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto border border-[#800000]/30 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
@@ -331,11 +335,10 @@ export default function ProjectsSection() {
                       <button
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          index === currentImageIndex 
-                            ? 'bg-[#800000] w-8' 
-                            : 'bg-white/40 hover:bg-white/60'
-                        }`}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentImageIndex
+                          ? 'bg-[#800000] w-8'
+                          : 'bg-white/40 hover:bg-white/60'
+                          }`}
                       />
                     ))}
                   </div>
@@ -362,11 +365,10 @@ export default function ProjectsSection() {
                     <span className="px-3 py-1 text-xs font-bold bg-[#800000]/20 text-[#800000] rounded-full border border-[#800000]/40">
                       {selectedProject.category}
                     </span>
-                    <span className={`px-3 py-1 text-xs font-bold rounded-full border ${
-                      selectedProject.status === "online" 
-                        ? "bg-green-500/20 text-green-400 border-green-500/40" 
-                        : "bg-gray-500/20 text-gray-400 border-gray-500/40"
-                    }`}>
+                    <span className={`px-3 py-1 text-xs font-bold rounded-full border ${selectedProject.status === "online"
+                      ? "bg-green-500/20 text-green-400 border-green-500/40"
+                      : "bg-gray-500/20 text-gray-400 border-gray-500/40"
+                      }`}>
                       <span className="flex items-center gap-1.5">
                         {selectedProject.status === "online" && (
                           <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
@@ -424,7 +426,7 @@ export default function ProjectsSection() {
           </div>
         </div>
       )}
-      
+
       {/* Animation Styles */}
       <style jsx>{`
         .animate-pulse-slow {

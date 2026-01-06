@@ -30,7 +30,6 @@ export default function Footer() {
             style={{ backdropFilter: 'blur(4px)' }}
           >
             <span className="text-[#800000] text-xl">♥</span>
-            <span className="text-white font-semibold break-words text-sm sm:text-base">hope u like it my luv -eq </span>
             <button
               className="ml-2 text-white/60 hover:text-[#800000] text-lg font-bold focus:outline-none w-8 h-8 flex items-center justify-center"
               aria-label="Close dialog"
