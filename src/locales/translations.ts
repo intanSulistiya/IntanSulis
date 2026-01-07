@@ -13,7 +13,7 @@ export const translations = {
       rotatingTexts: [" World!", " Guys", " How are you?", " I am Intan"],
       subtitle: "Web Developer who believes: small details can make websites extraordinary.",
       downloadCV: "Download CV",
-      myWork: "My Work",
+      myWork: "My Project",
       scroll: "Scroll",
     },
     // About Section
@@ -49,9 +49,9 @@ export const translations = {
           desc: "Coffee is a must. Americano for focus, brown sugar coffee for creative ideas.",
         },
         {
-          icon: "❤️‍🩹",
-          title: "Mood Swing Owner",
-          desc: "My mood goes up and down, but creativity emerges from there.",
+          icon: "🍰",
+          title: "I Love Cooking",
+          desc: "I love cooking, especially making cakes. If I like a food, I will learn to make it. I really love cheesecake.",
         },
       ],
       services: "Services",
@@ -127,10 +127,10 @@ export const translations = {
     // Hero Section
     hero: {
       hello: "Hello",
-      rotatingTexts: [" World!", " Guys", " How are you?", " I am Intan"],
+      rotatingTexts: [" Dunia!", " Guys", " Apa kabar?", " Saya Intan"],
       subtitle: "Web Developer yang percaya: detail kecil bisa membuat website jadi luar biasa.",
       downloadCV: "Download CV",
-      myWork: "My Work",
+      myWork: "Project saya",
       scroll: "Scroll",
     },
     // About Section
@@ -166,9 +166,9 @@ export const translations = {
           desc: "Kopi itu wajib. Americano untuk fokus, kopi gula aren untuk ide kreatif.",
         },
         {
-          icon: "❤️‍🩹",
-          title: "Mood Swing Owner",
-          desc: "Mood saya naik turun, tetapi dari situ kreativitas muncul.",
+          icon: "🍰",
+          title: "Saya Suka Memasak",
+          desc: "Saya suka memasak terutama membuat kue. jika saya menyukai sebuah makanan saya akan belajar membuatnya saya sangat suka cheesecake",
         },
       ],
       services: "Layanan",

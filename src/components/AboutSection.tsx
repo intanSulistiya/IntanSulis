@@ -139,6 +139,7 @@ export default function AboutSection() {
                 { label: "Laravel", short: "L" },
                 { label: "JavaScript", short: "JS" },
                 { label: "Bootstrap", short: "BS" },
+                { label: "Tailwind", short: "TW" },
               ].map((item, i) => (
                 <div
                   key={i}
