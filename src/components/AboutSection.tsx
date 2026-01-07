@@ -83,7 +83,7 @@ export default function AboutSection() {
             <div className="absolute inset-0 bg-gradient-to-br from-[#800000]/15 via-[#A52A2A]/10 to-[#800000]/15 rounded-3xl blur-3xl group-hover:blur-2xl transition-all duration-500"></div>
             <div className="relative w-full aspect-square max-w-sm rounded-3xl overflow-hidden bg-white/90 backdrop-blur-sm border border-gray-200/50 group-hover:border-[#800000]/30 transition-all duration-500 shadow-lg">
               <Image
-                src="/image/in.JPG"
+                src="/image/intan.jpeg"
                 alt="Intan Sulistiya"
                 fill
                 className="object-cover transform group-hover:scale-110 transition-transform duration-700"

@@ -132,7 +132,7 @@ export default function HeroSection() {
                   boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 40px rgba(128, 0, 0, 0.2), 0 0 80px rgba(165, 42, 42, 0.15)',
                 }}>
                   <Image
-                    src="/image/intan.jpeg"
+                    src="/image/sulis.png"
                     alt="Intan Sulistiya"
                     fill
                     className="object-cover transform group-hover:scale-110 transition-transform duration-700"
